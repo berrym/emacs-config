@@ -30,7 +30,7 @@
 (defconst berrym-c-style
   '((c-basic-offset                 . 4)
     (c-indent-tabs-mode             . nil)
-    (c-tab-always-indent            . t)
+    (c-tab-always-indent            . nil)
     (c-comment-only-line-offset     . 0)
     (c-require-final-newline        . t)
     (c-echo-syntactic-information-p . t)
@@ -61,19 +61,20 @@
 
 ;; load berrym style for certain modes
 (c-add-style "berrym" berrym-c-style)
-(mapc (lambda (mode)
-	(add-hook mode (lambda ()
-			 (c-set-style "berrym")
-			 (define-key c-mode-base-map
-			   (kbd "RET") 'newline-and-indent)
-			 (setq case-fold-search nil))))
-      '(c-mode-hook c++-mode-hook objc-mode-hook))
 
-;; configure python-mode to use ipython3 with elpy
-(setq python-python-command "ipython3")
+;; (mapc (lambda (mode)
+;;	(add-hook mode (lambda ()
+;;			 (c-set-style "berrym")
+;;			 (define-key c-mode-base-map
+;;			   (kbd "RET") 'newline-and-indent)
+;;			 (setq case-fold-search nil))))
+;;       '(c-mode-hook c++-mode-hook objc-mode-hook))
+
+;; configure python-mode
+(setq python-python-command "python")
 (elpy-enable)
-(elpy-use-ipython "ipython3")
-(elpy-clean-modeline)
+;; (elpy-use-ipython "ipython3")
+;; (elpy-clean-modeline)
 
 ;; configure lisp-mode to use sbcl and setup SLIME
 (setq inferior-lisp-program "clisp")
