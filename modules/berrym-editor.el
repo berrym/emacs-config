@@ -19,7 +19,9 @@
       (backward-delete-char 1)
     (kill-line 0)))
 
-;; basic hooks for all programming modes
+(setq-default indent-tabs-mode nil)
+
+;; basic hooks for all programming modes that derive from prog mode
 (add-hook 'prog-mode-hook (lambda ()
 			    (define-key prog-mode-map
 			      (kbd "RET") 'newline-and-indent)
@@ -62,13 +64,22 @@
 ;; load berrym style for certain modes
 (c-add-style "berrym" berrym-c-style)
 
+(add-hook 'c-common-mode-hook (lambda ()
+				(c-set-style "berrym")
+				(define-key c-mode-base-map
+				  (kbd "RET") 'newline-and-indent)
+				(setq case-fold-search nil)
+				(setq indent-tabs-mode nil)))
 ;; (mapc (lambda (mode)
 ;;	(add-hook mode (lambda ()
 ;;			 (c-set-style "berrym")
 ;;			 (define-key c-mode-base-map
 ;;			   (kbd "RET") 'newline-and-indent)
-;;			 (setq case-fold-search nil))))
+;;			 (setq case-fold-search nil)
+;;                       (setq indent-tabs-mode nil))))
 ;;       '(c-mode-hook c++-mode-hook objc-mode-hook))
+
+;; (setq c-default-style "berrym")
 
 ;; configure python-mode
 (setq python-python-command "python")

@@ -50,9 +50,9 @@
    (when (fboundp mode)
      (funcall mode 0)))
  '(
-   tool-bar-mode
-   menu-bar-mode
-   scroll-bar-mode
+   ;; tool-bar-mode
+   ;; menu-bar-mode
+   ;; scroll-bar-mode
    ;; fringe-mode
    blink-cursor-mode
    ))
