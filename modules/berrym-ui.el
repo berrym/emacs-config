@@ -1,6 +1,6 @@
 ;;; berrym-ui.el --- User Interface Configuration
 ;;
-;; Copyright (c) 2013 Michael Berry
+;; Copyright (c) 2013-2015 Michael Berry
 
 (global-undo-tree-mode t)
 (diminish 'undo-tree-mode)

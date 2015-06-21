@@ -1,6 +1,6 @@
 ;;; berrym-pacakges.el --- Required packages for my sanity.
 ;;
-;; Copyright (c) 2013 Michael Berry
+;; Copyright (c) 2013-2015 Michael Berry
 
 (require 'package)
 (add-to-list 'package-archives
@@ -31,6 +31,7 @@
     whitespace-cleanup-mode
     zenburn-theme)
   "A list of required packages for this configuration.")
+
 (defvar packages-needing-installed ()
   "A list of required packages that need to be installed.")
 

@@ -1,6 +1,6 @@
 ;;; init.el --- GNU Emacs Configuration
 ;;
-;; Copyright (c) 2014 Michael Berry
+;; Copyright (c) 2013-2015 Michael Berry
 
 (when (version< emacs-version "24.1")
   (error "This configuration only works with GNU Emacs >= 24.1"))

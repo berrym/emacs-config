@@ -1,6 +1,6 @@
 ;;; berrym-global-keybindings.el --- Global keyboard shortucuts.
 ;;
-;; Copyright (c) 2013 Michael Berry
+;; Copyright (c) 2013-2015 Michael Berry
 
 (global-set-key (kbd "M-s") 'repeat-last-search-forward)
 (global-set-key (kbd "M-r") 'repeat-last-search-backward)
