@@ -34,7 +34,6 @@
     (c-indent-tabs-mode             . nil)
     (c-tab-always-indent            . nil)
     (c-comment-only-line-offset     . 0)
-    (c-require-final-newline        . t)
     (c-echo-syntactic-information-p . t)
     (c-report-syntactic-errors      . t)
     (case-fold-search               . nil)
