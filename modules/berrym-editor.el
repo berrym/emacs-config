@@ -31,11 +31,11 @@
 ;; define a c programming style
 (defconst berrym-c-style
   '((c-basic-offset                 . 4)
-    (c-indent-tabs-mode             . nil)
-    (c-tab-always-indent            . nil)
+    (c-tab-always-indent            . t)
     (c-comment-only-line-offset     . 0)
     (c-echo-syntactic-information-p . t)
     (c-report-syntactic-errors      . t)
+    (indent-tabs-mode               . nil)
     (case-fold-search               . nil)
     (c-hanging-braces-alist         . ((brace-list-open)
 				       (brace-list-intro)
