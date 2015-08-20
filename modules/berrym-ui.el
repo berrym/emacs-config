@@ -15,6 +15,7 @@
 (diminish 'highlight-parentheses-mode)
 (ido-mode t)
 (ido-ubiquitous-mode t)
+(ido-vertical-mode t)
 (flx-ido-mode t)
 (setq ido-faces nil)
 (helm-mode t)

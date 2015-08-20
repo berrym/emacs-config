@@ -20,6 +20,7 @@
     helm
     highlight-parentheses
     ido-ubiquitous
+    ido-vertical-mode
     ir-black-theme
     jedi
     pretty-lambdada
