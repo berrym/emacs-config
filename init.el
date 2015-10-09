@@ -18,6 +18,7 @@
 (setq tramp-auto-save-directory (file-name-as-directory save-files-dir))
 (setq custom-file (expand-file-name "custom.el" (file-name-as-directory
 						 save-files-dir)))
+(load custom-file)
 
 (add-to-list 'load-path modules-dir)
 (require 'berrym-packages)
