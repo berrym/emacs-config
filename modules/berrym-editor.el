@@ -89,7 +89,7 @@
 (elpy-enable)
 
 ;; configure lisp-mode to use sbcl and setup SLIME
-(setq inferior-lisp-program "clisp")
+(setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-fancy slime-banner))
 
 ;; turn on some helpers for haskell-mode

@@ -23,6 +23,7 @@
     ido-vertical-mode
     ir-black-theme
     jedi
+    powerline
     pretty-lambdada
     projectile
     slime

@@ -24,6 +24,8 @@
 (setq projectile-known-projects-file
       (expand-file-name "projectile-bookmarks.eld" save-files-dir))
 (diminish 'projectile-mode)
+(require 'powerline)
+(powerline-default-theme)
 (show-paren-mode t)
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
