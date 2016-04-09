@@ -8,7 +8,7 @@
 (setq package-user-dir (expand-file-name "packages" user-emacs-directory))
 (package-initialize)
 
-(defvar required-packages
+(defvar *required-packages*
   '(auto-complete
     diminish
     elpy
@@ -26,6 +26,7 @@
     powerline
     pretty-lambdada
     projectile
+    python-mode
     slime
     solarized-theme
     undo-tree
@@ -34,7 +35,7 @@
     zenburn-theme)
   "A list of required packages for this configuration.")
 
-(defvar packages-needing-installed ()
+(defvar *packages-needing-installed* ()
   "A list of required packages that need to be installed.")
 
 (defun check-required-packages-are-installed ()
@@ -42,8 +43,8 @@
   (mapc
    (lambda (package)
      (or (package-installed-p package)
-	 (add-to-list 'packages-needing-installed package)))
-   required-packages))
+	 (add-to-list '*packages-needing-installed* package)))
+   *required-packages*))
 
 (defun install-packages-needing-installed ()
   "Install all required packages not yet installed."
@@ -52,7 +53,7 @@
    (lambda (package)
      (message "berrym-packages: Trying to install package %s..." package)
      (package-install package))
-   packages-needing-installed))
+   *packages-needing-installed*))
 
 (defun berrym-package-menu ()
   "Get/Create a buffer then load the package menu and refresh it's contents."
@@ -65,7 +66,7 @@
 
 (check-required-packages-are-installed)
 
-(if (not packages-needing-installed)
+(if (not *packages-needing-installed*)
     (message "berrym-packages: All required packages are installed.")
   (progn
     (message "berrym-packages: Some packages need installed...")

@@ -29,7 +29,7 @@
 			    (whitespace-cleanup-mode t)))
 
 ;; define a c programming style
-(defconst berrym-c-style
+(defconst +berrym-c-style+
   '((c-basic-offset                 . 4)
     (c-tab-always-indent            . t)
     (c-comment-only-line-offset     . 0)
@@ -81,12 +81,18 @@
         c-semi&comma-inside-parenlist
         c-semi&comma-no-newlines-before-nonblanks)))
   "Michael Berry C Programming Style.")
-(c-add-style "berrym" berrym-c-style)
+(c-add-style "berrym" +berrym-c-style+)
 (add-hook 'c-mode-common-hook (lambda () (c-set-style "berrym")))
 
 ;; configure python-mode
-(setq python-python-command "python")
+(setq python-python-command "python3")
 (elpy-enable)
+(setq elpy-rpc-backend "jedi")
+(setq py-shell-switch-buffers-on-execute-p t)
+;; don't split windows
+(setq py-split-windows-on-execute-p t)
+;; automatic indentation
+(setq py-smart-indentation t)
 
 ;; configure lisp-mode to use sbcl and setup SLIME
 (setq inferior-lisp-program "sbcl")

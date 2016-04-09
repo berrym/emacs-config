@@ -1,3 +1,4 @@
+
 ;;; berrym-ui.el --- User Interface Configuration
 ;;
 ;; Copyright (c) 2013-2015 Michael Berry
@@ -7,7 +8,7 @@
 (require 'auto-complete-config)
 (ac-config-default)
 (diminish 'auto-complete-mode)
-(setq ac-comphist-file (expand-file-name "ac-comphist.dat" save-files-dir))
+(setq ac-comphist-file (expand-file-name "ac-comphist.dat" *save-files-dir*))
 (define-globalized-minor-mode
   global-highlight-parentheses-mode highlight-parentheses-mode
   (lambda () (highlight-parentheses-mode t)))
@@ -22,10 +23,11 @@
 (diminish 'helm-mode)
 (projectile-global-mode t)
 (setq projectile-known-projects-file
-      (expand-file-name "projectile-bookmarks.eld" save-files-dir))
+      (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
 (diminish 'projectile-mode)
 (require 'powerline)
 (powerline-default-theme)
+(require 'python-mode)
 (show-paren-mode t)
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
