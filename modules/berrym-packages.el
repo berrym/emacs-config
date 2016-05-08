@@ -13,6 +13,7 @@
     diminish
     elpy
     expand-region
+    eyebrowse
     flx-ido
     flycheck
     google-this
@@ -29,6 +30,8 @@
     python-mode
     slime
     solarized-theme
+    spacemacs-theme
+    spaceline
     undo-tree
     volatile-highlights
     whitespace-cleanup-mode

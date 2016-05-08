@@ -1,7 +1,7 @@
 
 ;;; berrym-ui.el --- User Interface Configuration
 ;;
-;; Copyright (c) 2013-2015 Michael Berry
+;; Copyright (c) 2013-2016 Michael Berry
 
 (global-undo-tree-mode t)
 (diminish 'undo-tree-mode)
@@ -14,20 +14,29 @@
   (lambda () (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 (diminish 'highlight-parentheses-mode)
-(ido-mode t)
-(ido-ubiquitous-mode t)
-(ido-vertical-mode t)
+;;(ido-mode t)
+;;(ido-ubiquitous-mode t)
+;;(ido-vertical-mode t)
 (flx-ido-mode t)
 (setq ido-faces nil)
+(require 'helm)
+(require 'helm-config)
 (helm-mode t)
-(diminish 'helm-mode)
+;;(diminish 'helm-mode)
 (projectile-global-mode t)
 (setq projectile-known-projects-file
       (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
 (diminish 'projectile-mode)
+;;(powerline-default-theme)
 (require 'powerline)
-(powerline-default-theme)
+(setq powerline-default-separator 'wave)
+(require 'spaceline-config)
+(spaceline-emacs-theme)
+(spaceline-helm-mode t)
+(spaceline-info-mode t)
 (require 'python-mode)
+(nyan-mode t)
+
 (show-paren-mode t)
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
@@ -55,8 +64,8 @@
    (when (fboundp mode)
      (funcall mode 0)))
  '(
-   ;; tool-bar-mode
-   ;; menu-bar-mode
+   tool-bar-mode
+   menu-bar-mode
    ;; scroll-bar-mode
    ;; fringe-mode
    blink-cursor-mode
@@ -91,7 +100,7 @@
 (setq inhibit-startup-screen t)
 
 ;; load a color theme
-(load-theme 'whiteboard t)
+(load-theme 'spacemacs-dark t)
 
 ;; pretty lambdas
 (pretty-lambda-for-modes)
