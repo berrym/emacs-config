@@ -24,6 +24,7 @@
     ido-vertical-mode
     ir-black-theme
     jedi
+    nyan-mode
     powerline
     pretty-lambdada
     projectile
