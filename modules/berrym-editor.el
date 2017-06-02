@@ -25,7 +25,7 @@
                               (kbd "C-m") 'newline-and-indent)
 			    (define-key prog-mode-map
 			      (kbd "RET") 'newline-and-indent)
-			    (linum-mode t)
+			    ;;(linum-mode t)
 			    (whitespace-cleanup-mode t)))
 
 ;; define a c programming style
