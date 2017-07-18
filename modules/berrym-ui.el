@@ -1,4 +1,3 @@
-
 ;;; berrym-ui.el --- User Interface Configuration
 ;;
 ;; Copyright (c) 2013-2016 Michael Berry
@@ -17,8 +16,8 @@
 ;;(ido-mode t)
 ;;(ido-ubiquitous-mode t)
 ;;(ido-vertical-mode t)
-(flx-ido-mode t)
-(setq ido-faces nil)
+;;(flx-ido-mode t)
+;;(setq ido-faces nil)
 (require 'helm)
 (require 'helm-config)
 (helm-mode t)
@@ -28,14 +27,18 @@
       (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
 (diminish 'projectile-mode)
 ;;(powerline-default-theme)
-(require 'powerline)
-(setq powerline-default-separator 'wave)
+;;(require 'powerline)
+(setq powerline-default-separator 'utf-8)
 (require 'spaceline-config)
-(spaceline-emacs-theme)
+(spaceline-spacemacs-theme)
 (spaceline-helm-mode t)
 (spaceline-info-mode t)
+(spaceline-toggle-hud-on)
+(spaceline-toggle-version-control-on)
+(spaceline-toggle-window-number-on)
+(require 'dashboard)
+(dashboard-setup-startup-hook)
 (require 'python-mode)
-(nyan-mode t)
 
 (show-paren-mode t)
 (defadvice show-paren-function
