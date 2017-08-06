@@ -19,6 +19,9 @@
       (backward-delete-char 1)
     (kill-line 0)))
 
+(require 'whitespace-cleanup-mode)
+(diminish 'whitespace-cleanup-mode)
+
 ;; basic hooks for all programming modes that derive from prog mode
 (add-hook 'prog-mode-hook (lambda ()
                             (define-key prog-mode-map

@@ -1,6 +1,6 @@
 ;;; berrym-pacakges.el --- Required packages for my sanity.
 ;;
-;; Copyright (c) 2013-2015 Michael Berry
+;; Copyright (c) 2013-2017 Michael Berry
 
 (require 'package)
 (add-to-list 'package-archives
@@ -13,21 +13,16 @@
     diminish
     elpy
     expand-region
-    eyebrowse
-    flx-ido
     flycheck
     google-this
     haskell-mode
     helm
+    helm-projectile
     highlight-parentheses
-    ido-ubiquitous
-    ido-vertical-mode
     ir-black-theme
     jedi
-    nyan-mode
     powerline
     pretty-lambdada
-    projectile
     python-mode
     slime
     solarized-theme
@@ -58,15 +53,6 @@
      (message "berrym-packages: Trying to install package %s..." package)
      (package-install package))
    *packages-needing-installed*))
-
-(defun berrym-package-menu ()
-  "Get/Create a buffer then load the package menu and refresh it's contents."
-  (interactive)
-  (message "berrym-packages: switching to package-menu-buffer.")
-  (let ((package-menu-buffer (get-buffer-create "package-menu-buffer")))
-    (switch-to-buffer package-menu-buffer)
-    (package-menu-mode)
-    (package-menu-refresh)))
 
 (check-required-packages-are-installed)
 
