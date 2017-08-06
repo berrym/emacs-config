@@ -77,9 +77,6 @@
       (spaceline-toggle-version-control-on)
       (spaceline-toggle-window-number-on)))
 
-(require 'dashboard)
-(dashboard-setup-startup-hook)
-
 (require 'python-mode)
 
 (require 'volatile-highlights)
