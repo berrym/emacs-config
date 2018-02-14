@@ -68,7 +68,7 @@
 ;; use spaceline powerline config
 (if (display-graphic-p)
     (progn
-      (setq powerline-default-separator 'utf-8)
+      ;;(setq powerline-default-separator 'utf-8)
       (require 'spaceline-config)
       (spaceline-spacemacs-theme)
       (spaceline-helm-mode t)
@@ -112,7 +112,7 @@
   (load-theme 'ir-black t))
 
 ;; pretty lambdas
-(pretty-lambda-for-modes)
+;;(pretty-lambda-for-modes)
 
 (message "berrym-ui: module loaded successfully.")
 

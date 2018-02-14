@@ -22,7 +22,7 @@
     ir-black-theme
     jedi
     powerline
-    pretty-lambdada
+    ;;pretty-lambdada
     python-mode
     slime
     solarized-theme
