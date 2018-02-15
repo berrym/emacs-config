@@ -75,14 +75,10 @@
 ;; use spaceline powerline config
 (if (display-graphic-p)
     (progn
-      ;;(setq powerline-default-separator 'utf-8)
       (require 'spaceline-config)
       (spaceline-spacemacs-theme)
       (spaceline-helm-mode t)
-      (spaceline-info-mode t)
-      (spaceline-toggle-hud-on)
-      (spaceline-toggle-version-control-on)
-      (spaceline-toggle-window-number-on)))
+      (spaceline-info-mode t)))
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)

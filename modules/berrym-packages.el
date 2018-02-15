@@ -23,6 +23,7 @@
     ir-black-theme
     jedi
     powerline
+    projectile
     python-mode
     slime
     solarized-theme
