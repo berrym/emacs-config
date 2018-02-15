@@ -19,9 +19,6 @@
       (backward-delete-char 1)
     (kill-line 0)))
 
-(require 'whitespace-cleanup-mode)
-(diminish 'whitespace-cleanup-mode)
-
 ;; basic hooks for all programming modes that derive from prog mode
 (add-hook 'prog-mode-hook (lambda ()
                             (define-key prog-mode-map
@@ -29,7 +26,7 @@
 			    (define-key prog-mode-map
 			      (kbd "RET") 'newline-and-indent)
 			    ;;(linum-mode t)
-			    (whitespace-cleanup-mode t)))
+			    (whitespace-cleanup-mode)))
 
 ;; define a c programming style
 (defconst +berrym-c-style+
@@ -88,6 +85,7 @@
 (add-hook 'c-mode-common-hook (lambda () (c-set-style "berrym")))
 
 ;; configure python-mode
+(require 'python-mode)
 (setq python-python-command "python3")
 (elpy-enable)
 (setq elpy-rpc-backend "jedi")

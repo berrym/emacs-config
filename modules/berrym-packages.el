@@ -9,7 +9,8 @@
 (package-initialize)
 
 (defvar *required-packages*
-  '(auto-complete
+  '(anzu
+    auto-complete
     diminish
     elpy
     expand-region
@@ -22,7 +23,6 @@
     ir-black-theme
     jedi
     powerline
-    ;;pretty-lambdada
     python-mode
     slime
     solarized-theme

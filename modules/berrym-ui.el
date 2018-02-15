@@ -2,14 +2,6 @@
 ;;
 ;; Copyright (c) 2013-2017 Michael Berry
 
-(global-undo-tree-mode t)
-(diminish 'undo-tree-mode)
-
-(require 'auto-complete-config)
-(ac-config-default)
-(diminish 'auto-complete-mode)
-(setq ac-comphist-file (expand-file-name "ac-comphist.dat" *save-files-dir*))
-
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
   "If the matching paren is offscreen, show the matching line in the
@@ -29,16 +21,6 @@
   (lambda () (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 (diminish 'highlight-parentheses-mode)
-
-(require 'helm)
-(require 'helm-config)
-(helm-mode t)
-(diminish 'helm-mode)
-
-(projectile-global-mode t)
-(setq projectile-known-projects-file
-      (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
-(diminish 'projectile-mode)
 
 ;; mode line settings
 (unless (display-graphic-p)
@@ -65,6 +47,31 @@
        blink-cursor-mode
        )))
 
+(require 'whitespace-cleanup-mode)
+(diminish 'whitespace-cleanup-mode)
+
+(global-undo-tree-mode t)
+(diminish 'undo-tree-mode)
+ 
+(require 'anzu)
+(global-anzu-mode t)
+(setq anzu-cons-mode-line-p nil)
+
+(require 'auto-complete-config)
+(ac-config-default)
+(diminish 'auto-complete-mode)
+(setq ac-comphist-file (expand-file-name "ac-comphist.dat" *save-files-dir*))
+
+(require 'helm)
+(require 'helm-config)
+(helm-mode t)
+(diminish 'helm-mode)
+
+(projectile-global-mode t)
+(setq projectile-known-projects-file
+      (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
+(diminish 'projectile-mode)
+
 ;; use spaceline powerline config
 (if (display-graphic-p)
     (progn
@@ -76,8 +83,6 @@
       (spaceline-toggle-hud-on)
       (spaceline-toggle-version-control-on)
       (spaceline-toggle-window-number-on)))
-
-(require 'python-mode)
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
@@ -110,9 +115,6 @@
 (if (display-graphic-p)
     (load-theme 'spacemacs-dark t)
   (load-theme 'ir-black t))
-
-;; pretty lambdas
-;;(pretty-lambda-for-modes)
 
 (message "berrym-ui: module loaded successfully.")
 
