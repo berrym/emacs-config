@@ -1,12 +1,19 @@
 ;;; berrym-ui.el --- User Interface Configuration
 ;;
-;; Copyright (c) 2013-2017 Michael Berry
+;; Copyright (c) 2013-2018 Michael Berry
+;;
+;; Author: Michael Berry <trismegustis@gmail.com>
+;; URL: https://bitbucket.org/berrym/emacs-config
+;;
+;; This file is not part of GNU Emacs.
+;;
+;;; License: GPLv3
 
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
   "If the matching paren is offscreen, show the matching line in the
-        echo area. Has no effect if the character before point is not of
-        the syntax class ')'."
+   echo area. Has no effect if the character before point is not of
+   the syntax class ')'."
   (interactive)
   (let* ((cb (char-before (point)))
 	 (matching-text (and cb
@@ -64,7 +71,7 @@
 
 (require 'helm)
 (require 'helm-config)
-(helm-mode t)
+;;(helm-mode t)
 (diminish 'helm-mode)
 
 (projectile-global-mode t)
@@ -83,6 +90,8 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 (diminish 'volatile-highlights-mode)
+
+(require 'neotree)
 
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)

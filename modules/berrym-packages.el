@@ -1,6 +1,13 @@
-;;; berrym-pacakges.el --- Required packages for my sanity.
+;;; berrym-pacakges.el --- Required packages for my sanity
 ;;
-;; Copyright (c) 2013-2017 Michael Berry
+;; Copyright (c) 2013-2018 Michael Berry
+;;
+;; Author: Michael Berry <trismegustis@gmail.com>
+;; URL: https://bitbucket.org/berrym/emacs-config
+;;
+;; This file is not part of GNU Emacs.
+;;
+;;; License: GPLv3
 
 (require 'package)
 (add-to-list 'package-archives
@@ -22,6 +29,7 @@
     highlight-parentheses
     ir-black-theme
     jedi
+    neotree
     powerline
     projectile
     python-mode

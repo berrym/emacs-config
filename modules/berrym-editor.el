@@ -1,6 +1,13 @@
-;;; berrym-editor.el --- Configure editing behaviors.
+;;; berrym-editor.el --- Configure Editor Behaviors
 ;;
-;; Copyright (c) 2013-2015 Michael Berry
+;; Copyright (c) 2013-2018 Michael Berry
+;;
+;; Author: Michael Berry <trismegustis@gmail.com>
+;; URL: https://bitbucket.org/berrym/emacs-config
+;;
+;; This file is not part of GNU Emacs.
+;;
+;;; License: GPLv3
 
 (defun repeat-last-search-forward ()
   "Repeat last search forward."
