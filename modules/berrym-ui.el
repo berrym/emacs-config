@@ -9,11 +9,15 @@
 ;;
 ;;; License: GPLv3
 
+;; set default font
+(set-frame-font "Source Code Pro 11")
+
+;; fancy parenthesis matching
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
   "If the matching paren is offscreen, show the matching line in the
-   echo area. Has no effect if the character before point is not of
-   the syntax class ')'."
+echo area. Has no effect if the character before point is not of
+the syntax class ')'."
   (interactive)
   (let* ((cb (char-before (point)))
 	 (matching-text (and cb
@@ -54,26 +58,31 @@
        blink-cursor-mode
        )))
 
+;; cleanup whitespace
 (require 'whitespace-cleanup-mode)
 (diminish 'whitespace-cleanup-mode)
 
+;; undo tree
 (global-undo-tree-mode t)
 (diminish 'undo-tree-mode)
- 
+
+;; show number of search matches
 (require 'anzu)
 (global-anzu-mode t)
-(setq anzu-cons-mode-line-p nil)
+(diminish 'anzu-mode)
 
+;; auto completion
 (require 'auto-complete-config)
 (ac-config-default)
 (diminish 'auto-complete-mode)
 (setq ac-comphist-file (expand-file-name "ac-comphist.dat" *save-files-dir*))
 
+;; enhanced menu navigation
 (require 'helm)
 (require 'helm-config)
-;;(helm-mode t)
 (diminish 'helm-mode)
 
+;; project tools
 (projectile-global-mode t)
 (setq projectile-known-projects-file
       (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
@@ -91,6 +100,7 @@
 (volatile-highlights-mode t)
 (diminish 'volatile-highlights-mode)
 
+;; vim nerdtree like package
 (require 'neotree)
 
 ;; enable y/n answers
@@ -102,9 +112,10 @@
 ;; disable beep
 (setq visible-bell t)
 
-;; No text in scratch buffer
+;; no text in scratch buffer
 (setq initial-scratch-message "")
 
+;; set the frame title format
 (setq-default
  frame-title-format
  '(:eval
