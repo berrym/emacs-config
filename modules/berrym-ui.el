@@ -10,7 +10,17 @@
 ;;; License: GPLv3
 
 ;; set default font
-(set-frame-font "Source Code Pro 11")
+(defun font-exists-p (font)
+  "Check if a font exists. Return t if found nill if not."
+  (if (null (x-list-fonts font))
+      nil
+    t))
+
+(if (font-exists-p "Source Code Pro")
+    (progn
+       (set-frame-font "Source Code Pro 11")
+       (message "Using Source Code Pro font."))
+  (message "Source Code Pro font not found...Using default font."))
 
 ;; fancy parenthesis matching
 (defadvice show-paren-function
