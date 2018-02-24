@@ -9,19 +9,6 @@
 ;;
 ;;; License: GPLv3
 
-;; set default font
-(defun font-exists-p (font)
-  "Check if a font exists. Return t if found nill if not."
-  (if (null (x-list-fonts font))
-      nil
-    t))
-
-(if (font-exists-p "Source Code Pro")
-    (progn
-       (set-frame-font "Source Code Pro 11")
-       (message "Using Source Code Pro font."))
-  (message "Source Code Pro font not found...Using default font."))
-
 ;; fancy parenthesis matching
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
@@ -137,10 +124,24 @@ the syntax class ')'."
 ;; disable startup screen
 (setq inhibit-startup-screen t)
 
-;; load a color theme
+;; set default font and color theme
+(defun font-exists-p (font)
+  "Check if a font exists. Return t if found nill if not."
+  (if (null (x-list-fonts font))
+      nil
+    t))
+
+;; only change the font (if it exists) if in grpahical mode
 (if (display-graphic-p)
-    (load-theme 'spacemacs-dark t)
-  (load-theme 'ir-black t))
+    (progn
+      (if (font-exists-p "Source Code Pro")
+	  (progn
+	    (set-frame-font "Source Code Pro 11")
+	    (message "Using Source Code Pro font."))
+	(message "Source Code Pro font not found. Using default font.")))
+  (message "Using default font."))
+
+(load-theme 'spacemacs-dark t)
 
 (message "berrym-ui: module loaded successfully.")
 
