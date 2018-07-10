@@ -18,6 +18,7 @@
 (defvar *required-packages*
   '(anzu
     auto-complete
+    company
     diminish
     elpy
     expand-region

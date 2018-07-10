@@ -74,13 +74,17 @@ the syntax class ')'."
 (diminish 'auto-complete-mode)
 (setq ac-comphist-file (expand-file-name "ac-comphist.dat" *save-files-dir*))
 
+(require 'company)
+(global-company-mode)
+(diminish 'global-company-mode)
+
 ;; enhanced menu navigation
 (require 'helm)
 (require 'helm-config)
 (diminish 'helm-mode)
 
 ;; project tools
-(projectile-global-mode t)
+(projectile-mode t)
 (setq projectile-known-projects-file
       (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
 (diminish 'projectile-mode)
