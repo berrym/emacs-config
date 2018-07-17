@@ -30,6 +30,7 @@
     highlight-parentheses
     ir-black-theme
     jedi
+    monky
     neotree
     powerline
     projectile

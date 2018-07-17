@@ -12,9 +12,8 @@
 ;; fancy parenthesis matching
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
-  "If the matching paren is offscreen, show the matching line in the
-echo area. Has no effect if the character before point is not of
-the syntax class ')'."
+  "If the matching paren is offscreen, show the matching line in the echo area.
+Has no effect if the character before point is not of the syntax class ')'."
   (interactive)
     (let* ((cb (char-before (point)))
 	   (matching-text
@@ -130,7 +129,7 @@ the syntax class ')'."
 
 ;; set default font and color theme
 (defun font-exists-p (font)
-  "Check if a font exists. Return t if found nill if not."
+  "Check if a FONT exists.  Return t if found nill if not."
   (if (null (x-list-fonts font))
       nil
     t))
@@ -142,8 +141,12 @@ the syntax class ')'."
 	  (progn
 	    (set-frame-font "Source Code Pro 11")
 	    (message "Using Source Code Pro font."))
-	(message "Source Code Pro font not found. Using default font.")))
+	(message "Source Code Pro font not found.  Using default font.")))
   (message "Using default font."))
+
+;; projectile-helm
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 (load-theme 'spacemacs-dark t)
 

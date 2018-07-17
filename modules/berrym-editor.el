@@ -32,6 +32,7 @@
                               (kbd "C-m") 'newline-and-indent)
 			    (define-key prog-mode-map
 			      (kbd "RET") 'newline-and-indent)
+			    (global-flycheck-mode)
 			    ;;(linum-mode t)
 			    (whitespace-cleanup-mode)))
 
@@ -110,6 +111,10 @@
 (add-hook 'haskell-mode-hook (lambda ()
 			       (turn-on-haskell-doc-mode)
 			       (turn-on-haskell-indent)))
+
+;; magit for hg
+(require 'monky)
+(setq monky-process-type 'cmdserver)
 
 (message "berrym-editor: module loaded successfully.")
 
