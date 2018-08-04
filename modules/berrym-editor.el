@@ -33,6 +33,7 @@
 			    (define-key prog-mode-map
 			      (kbd "RET") 'newline-and-indent)
 			    (global-flycheck-mode)
+			    (dumb-jump-mode)
 			    ;;(linum-mode t)
 			    (whitespace-cleanup-mode)))
 

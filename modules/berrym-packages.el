@@ -20,6 +20,7 @@
     auto-complete
     company
     diminish
+    dumb-jump
     elpy
     expand-region
     flycheck
