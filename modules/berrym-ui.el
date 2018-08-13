@@ -80,13 +80,17 @@ Has no effect if the character before point is not of the syntax class ')'."
 ;; enhanced menu navigation
 (require 'helm)
 (require 'helm-config)
+(helm-mode)
 (diminish 'helm-mode)
 
-;; project tools
-(projectile-mode t)
+(require 'projectile)
 (setq projectile-known-projects-file
       (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
 (diminish 'projectile-mode)
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(require 'helm-projectile)
+(helm-projectile-on)
 
 ;; use spaceline powerline config
 (if (display-graphic-p)

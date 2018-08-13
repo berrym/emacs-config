@@ -34,6 +34,7 @@
 			      (kbd "RET") 'newline-and-indent)
 			    (global-flycheck-mode)
 			    (dumb-jump-mode)
+			    (projectile-mode)
 			    ;;(linum-mode t)
 			    (whitespace-cleanup-mode)))
 
