@@ -148,10 +148,6 @@ Has no effect if the character before point is not of the syntax class ')'."
 	(message "Source Code Pro font not found.  Using default font.")))
   (message "Using default font."))
 
-;; projectile-helm
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
-
 (load-theme 'spacemacs-dark t)
 
 (message "berrym-ui: module loaded successfully.")
