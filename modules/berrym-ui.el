@@ -148,7 +148,8 @@ Has no effect if the character before point is not of the syntax class ')'."
 	(message "Source Code Pro font not found.  Using default font.")))
   (message "Using default font."))
 
-(load-theme 'spacemacs-dark t)
+;; (load-theme 'spacemacs-dark t)
+(load-theme 'solarized-dark t)
 
 (message "berrym-ui: module loaded successfully.")
 

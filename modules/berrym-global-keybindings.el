@@ -1,6 +1,6 @@
 ;;; berrym-global-keybindings.el --- Global keyboard shortucuts.
 ;;
-;; Copyright (c) 2013-2018 Michael Berry
+;; Copyright (c) 2013-2019 Michael Berry
 ;;
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
@@ -11,7 +11,7 @@
 
 (global-set-key (kbd "M-s") 'repeat-last-search-forward)
 (global-set-key (kbd "M-r") 'repeat-last-search-backward)
-(global-set-key (kbd "C-c '") 'backward-kill-line)
+(global-set-key (kbd "C-S-k") 'backward-kill-line)
 (global-set-key (kbd "<f5>") 'linum-mode)
 (global-set-key (kbd "<f8>") 'neotree-toggle)
 (global-set-key (kbd "<f11>") 'package-show-package-list)
