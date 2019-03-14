@@ -26,6 +26,13 @@
       (backward-delete-char 1)
     (kill-line 0)))
 
+(defun print-elements-in-list (l)
+  "Print each element in a list L."
+  (interactive)
+  (while l
+    (print (car l))
+    (setq l (cdr l))))
+
 ;; basic hooks for all programming modes that derive from prog mode
 (add-hook 'prog-mode-hook (lambda ()
                             (define-key prog-mode-map
