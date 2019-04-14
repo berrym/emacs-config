@@ -12,8 +12,8 @@
 ;; Without this comment emacs25 adds (package-initialize) here
 ;; (package-initialize)
 
-(when (version< emacs-version "24.4")
-  (error "This configuration only works with GNU Emacs >= 24.4"))
+(when (version< emacs-version "25.1")
+  (error "This configuration only works with GNU Emacs >= 25.1"))
 
 (defvar *modules-dir* (expand-file-name "modules" user-emacs-directory)
   "Directory for modules altering the standard emacs environment.")
