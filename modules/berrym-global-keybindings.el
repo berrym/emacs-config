@@ -1,14 +1,16 @@
-;;; berrym-global-keybindings.el --- Global keyboard shortucuts.
-;;
-;; Copyright (c) 2013-2019 Michael Berry
-;;
+;;; Commentary:
+;;;berrym-global-keybindings.el --- Global keyboard shortcuts.
+
+;; Copyright (c) 2019 Michael Berry
+
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
-;;
-;; This file is not part of GNU Emacs.
-;;
-;;; License: GPLv3
 
+;; This file is not part of GNU Emacs.
+
+;; License: GPLv3
+
+;;; Code:
 (global-set-key (kbd "M-s") 'repeat-last-search-forward)
 (global-set-key (kbd "M-r") 'repeat-last-search-backward)
 (global-set-key (kbd "C-S-k") 'backward-kill-line)

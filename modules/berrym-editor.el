@@ -1,14 +1,16 @@
-;;; berrym-editor.el --- Configure Editor Behaviors
-;;
+;;; Commentary:
+;;;berrym-editor.el --- Configure Editor Behaviors
+
 ;; Copyright (c) 2013-2018 Michael Berry
-;;
+
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
-;;
-;; This file is not part of GNU Emacs.
-;;
-;;; License: GPLv3
 
+;; This file is not part of GNU Emacs.
+
+;; License: GPLv3
+
+;;; Code:
 (defun repeat-last-search-forward ()
   "Repeat last search forward."
   (interactive)
@@ -43,10 +45,10 @@
 			    (dumb-jump-mode)
 			    (projectile-mode)
 			    ;;(linum-mode t)
-			    (whitespace-cleanup-mode)))
+			    (whitespace-cleanup-mode t)))
 
 ;; define a c programming style
-(defconst +berrym-c-style+
+(defconst berrym-c-style
   '((c-basic-offset                 . 4)
     (c-tab-always-indent            . t)
     (c-comment-only-line-offset     . 0)
@@ -98,11 +100,15 @@
         c-semi&comma-inside-parenlist
         c-semi&comma-no-newlines-before-nonblanks)))
   "Michael Berry C Programming Style.")
-(c-add-style "berrym" +berrym-c-style+)
+(c-add-style "berrym" berrym-c-style)
 (add-hook 'c-mode-common-hook (lambda () (c-set-style "berrym")))
 
 ;; configure python-mode
 (require 'python-mode)
+(defvar python-python-command)
+(defvar elpy-rpc-backend)
+(defvar py-shell-switch-buffers-on-execute-p)
+(defvar py-split-windows-on-execute-p)
 (setq python-python-command "python3")
 (elpy-enable)
 (setq elpy-rpc-backend "jedi")
@@ -113,6 +119,7 @@
 (setq py-smart-indentation t)
 
 ;; configure lisp-mode to use sbcl and setup SLIME
+(defvar inferior-lisp-program)
 (setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-fancy slime-banner))
 

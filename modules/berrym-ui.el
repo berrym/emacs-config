@@ -1,15 +1,19 @@
-;;; berrym-ui.el --- User Interface Configuration
-;;
-;; Copyright (c) 2013-2018 Michael Berry
-;;
+;;; Commentary:
+;;;berrym-ui.el --- User Interface Configuration
+
+;; Copyright (c) 2019 Michael Berry
+
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
-;;
-;; This file is not part of GNU Emacs.
-;;
-;;; License: GPLv3
 
-;; fancy parenthesis matching
+;; This file is not part of GNU Emacs.
+
+;; License: GPLv3
+
+;;; Code:
+(defconst save-files-dir (expand-file-name "save-files" user-emacs-directory)
+  "Directory for storing autosave and backup files.")
+
 (defadvice show-paren-function
   (after show-matching-paren-offscreen activate)
   "If the matching paren is offscreen, show the matching line in the echo area.
@@ -23,6 +27,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (show-paren-mode t)
 
+(defvar highlight-parentheses-mode)
 (define-globalized-minor-mode
   global-highlight-parentheses-mode highlight-parentheses-mode
   (lambda () (highlight-parentheses-mode t)))
@@ -41,18 +46,17 @@ Has no effect if the character before point is not of the syntax class ')'."
        (fringe-mode 4))
 
 ;; disable some gui components
-(if (display-graphic-p)
-    (mapc
-     (lambda (mode)
-       (when (fboundp mode)
-	 (funcall mode 0)))
-     '(
-       tool-bar-mode
-       menu-bar-mode
-       ;; scroll-bar-mode
-       ;; fringe-mode
-       blink-cursor-mode
-       )))
+;;(if (display-graphic-p)
+(mapc
+ (lambda (mode)
+   (when (fboundp mode)
+     (funcall mode 0)))
+ '(tool-bar-mode
+   menu-bar-mode
+   ;; scroll-bar-mode
+   ;; fringe-mode
+   blink-cursor-mode
+   )) ;;)
 
 ;; cleanup whitespace
 (require 'whitespace-cleanup-mode)
@@ -71,7 +75,8 @@ Has no effect if the character before point is not of the syntax class ')'."
 (require 'auto-complete-config)
 (ac-config-default)
 (diminish 'auto-complete-mode)
-(setq ac-comphist-file (expand-file-name "ac-comphist.dat" *save-files-dir*))
+(setq ac-comphist-file
+      (expand-file-name "ac-comphist.dat" save-files-dir))
 
 (require 'company)
 (global-company-mode)
@@ -85,7 +90,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (require 'projectile)
 (setq projectile-known-projects-file
-      (expand-file-name "projectile-bookmarks.eld" *save-files-dir*))
+      (expand-file-name "projectile-bookmarks.eld" save-files-dir))
 (diminish 'projectile-mode)
 
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -133,7 +138,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 ;; set default font and color theme
 (defun font-exists-p (font)
-  "Check if a FONT exists.  Return t if found nill if not."
+  "Check if a FONT exists.  Return T if found NIL if not."
   (if (null (x-list-fonts font))
       nil
     t))
