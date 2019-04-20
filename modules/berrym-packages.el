@@ -39,7 +39,7 @@
     powerline
     projectile
     python-mode
-    rust-mode
+    rustic
     slime
     solarized-theme
     spacemacs-theme
