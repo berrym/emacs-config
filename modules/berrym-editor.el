@@ -28,6 +28,33 @@
       (backward-delete-char 1)
     (kill-line 0)))
 
+(defun duplicate-line ()
+  "Create a duplicate of current line."
+  (interactive)
+  (save-mark-and-excursion
+    (beginning-of-line)
+    (insert (thing-at-point 'line t))))
+
+(defun transpose-line-down ()
+  "Transpose current line down."
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines 1))
+    (forward-line)
+    (move-to-column col)))
+
+(defun transpose-line-up ()
+  "Transpose current line up."
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines -1))
+    (forward-line -1)
+    (move-to-column col)))
+
 (defun print-elements-in-list (l)
   "Print each element in a list L."
   (interactive)
