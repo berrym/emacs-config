@@ -17,7 +17,7 @@
 (setq package-user-dir (expand-file-name "packages" user-emacs-directory))
 (package-initialize)
 
-(defconst required-packages
+(setq package-selected-packages
   '(anzu
     auto-complete
     company
@@ -29,6 +29,7 @@
     google-this
     haskell-mode
     helm
+    helm-ag
     helm-projectile
     highlight-parentheses
     ir-black-theme
@@ -47,36 +48,9 @@
     undo-tree
     volatile-highlights
     whitespace-cleanup-mode
-    zenburn-theme)
-  "A list of required packages for this configuration.")
+    zenburn-theme))
 
-(defvar packages-needing-installed ()
-  "A list of required packages that need to be installed.")
-
-(defun check-required-packages-are-installed ()
-  "Check that all required packages are installed."
-  (mapc
-   (lambda (package)
-     (or (package-installed-p package)
-	 (add-to-list 'packages-needing-installed package)))
-   required-packages))
-
-(defun install-packages-needing-installed ()
-  "Install all required packages not yet installed."
-  (package-refresh-contents)
-  (mapc
-   (lambda (package)
-     (message "berrym-packages: Trying to install package %s..." package)
-     (package-install package))
-   packages-needing-installed))
-
-(check-required-packages-are-installed)
-
-(if (not packages-needing-installed)
-    (message "berrym-packages: All required packages are installed.")
-  (progn
-    (message "berrym-packages: Some packages need installed...")
-    (install-packages-needing-installed)))
+(package-install-selected-packages)
 
 (message "berrym-packages: module loaded successfully.")
 

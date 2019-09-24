@@ -148,13 +148,15 @@ Has no effect if the character before point is not of the syntax class ')'."
     (progn
       (if (font-exists-p "Source Code Pro")
 	  (progn
-	    (set-frame-font "Source Code Pro 11")
+	    (set-frame-font "Source Code Pro 10")
 	    (message "Using Source Code Pro font."))
 	(message "Source Code Pro font not found.  Using default font.")))
   (message "Using default font."))
 
 ;; (load-theme 'spacemacs-dark t)
-(load-theme 'solarized-dark t)
+;; (load-theme 'solarized-dark t)
+;; (load-theme 'ir-black t)
+(load-theme 'zenburn t)
 
 (message "berrym-ui: module loaded successfully.")
 

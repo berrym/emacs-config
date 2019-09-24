@@ -133,12 +133,14 @@
 ;; configure python-mode
 (require 'python-mode)
 (defvar python-python-command)
+(defvar elpy-rpc-python-command)
 (defvar elpy-rpc-backend)
 (defvar py-shell-switch-buffers-on-execute-p)
 (defvar py-split-windows-on-execute-p)
 (setq python-python-command "python3")
-(elpy-enable)
+(setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-backend "jedi")
+(elpy-enable)
 (setq py-shell-switch-buffers-on-execute-p t)
 ;; don't split windows
 (setq py-split-windows-on-execute-p t)
