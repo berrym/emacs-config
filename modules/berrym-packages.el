@@ -11,11 +11,23 @@
 ;; License: GPLv3
 
 ;;; Code:
+
 (require 'package)
+
+;; (if (and (version< emacs-version "26.3") (>= libgnutls-version 30604))
+;;     (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+
+;; (add-to-list 'package-archives
+;; 	     '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+;; (add-to-list 'package-archives
+;;           '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+
 (setq package-user-dir (expand-file-name "packages" user-emacs-directory))
-(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
 
 (setq package-selected-packages
   '(anzu
@@ -40,7 +52,7 @@
     powerline
     projectile
     python-mode
-    rustic
+    ;; rustic
     slime
     solarized-theme
     spacemacs-theme
@@ -49,6 +61,8 @@
     volatile-highlights
     whitespace-cleanup-mode
     zenburn-theme))
+
+(package-initialize)
 
 (package-install-selected-packages)
 

@@ -63,7 +63,8 @@ Has no effect if the character before point is not of the syntax class ')'."
 (diminish 'whitespace-cleanup-mode)
 
 ;; undo tree
-(global-undo-tree-mode t)
+(require 'undo-tree)
+(global-undo-tree-mode)
 (diminish 'undo-tree-mode)
 
 ;; show number of search matches
