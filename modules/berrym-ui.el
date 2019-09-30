@@ -88,11 +88,12 @@ Has no effect if the character before point is not of the syntax class ')'."
 (diminish 'helm-mode)
 
 (require 'projectile)
+(projectile-mode t)
 (setq projectile-known-projects-file
       (expand-file-name "projectile-bookmarks.eld" save-files-dir))
 (diminish 'projectile-mode)
-
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 (require 'helm-projectile)
 (helm-projectile-on)
 
@@ -142,11 +143,11 @@ Has no effect if the character before point is not of the syntax class ')'."
 ;; only change the font (if it exists) if in grpahical mode
 (if (display-graphic-p)
     (progn
-      (if (font-exists-p "Source Code Pro")
+      (if (font-exists-p "Source Code Variable")
 	  (progn
-	    (set-frame-font "Source Code Pro 10")
-	    (message "Using Source Code Pro font."))
-	(message "Source Code Pro font not found.  Using default font.")))
+	    (set-frame-font "Source Code Variable 10")
+	    (message "Using Source Code Variable font."))
+	(message "Source Code Variable font not found.  Using default font.")))
   (message "Using default font."))
 
 ;; (load-theme 'spacemacs-dark t)
