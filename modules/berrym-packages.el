@@ -13,7 +13,6 @@
 ;;; Code:
 
 (require 'package)
-(package-initialize)
 
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
@@ -44,6 +43,8 @@
     volatile-highlights
     whitespace-cleanup-mode
     zenburn-theme))
+
+(package-initialize)
 
 (package-install-selected-packages)
 

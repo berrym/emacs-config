@@ -68,7 +68,7 @@
                               (kbd "C-m") 'newline-and-indent)
 			    (define-key prog-mode-map
 			      (kbd "RET") 'newline-and-indent)
-			    (global-flycheck-mode)
+			    ;;(global-flycheck-mode)
 			    (dumb-jump-mode)
 			    (projectile-mode)
 			    ;;(linum-mode t)

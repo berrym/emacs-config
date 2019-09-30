@@ -14,8 +14,8 @@
 ;; (package-initialize)
 
 ;;; Code:
-(when (version< emacs-version "26.2")
-  (error "This configuration only works with GNU Emacs >= 26.2"))
+(when (version< emacs-version "26.3")
+  (error "This configuration only works with GNU Emacs >= 26.3"))
 
 (defconst modules-dir (expand-file-name "modules" user-emacs-directory)
   "Directory for modules altering the standard Emacs environment.")
