@@ -130,32 +130,8 @@
 (c-add-style "berrym" berrym-c-style)
 (add-hook 'c-mode-common-hook (lambda () (c-set-style "berrym")))
 
-;; configure python-mode
-(require 'python-mode)
-(defvar python-python-command)
-(defvar elpy-rpc-python-command)
-(defvar elpy-rpc-backend)
-(defvar py-shell-switch-buffers-on-execute-p)
-(defvar py-split-windows-on-execute-p)
-(setq python-python-command "python3")
-(setq elpy-rpc-python-command "python3")
-(setq elpy-rpc-backend "jedi")
+;; enable elpy
 (elpy-enable)
-(setq py-shell-switch-buffers-on-execute-p t)
-;; don't split windows
-(setq py-split-windows-on-execute-p t)
-;; automatic indentation
-(setq py-smart-indentation t)
-
-;; configure lisp-mode to use sbcl and setup SLIME
-(defvar inferior-lisp-program)
-(setq inferior-lisp-program "sbcl")
-(slime-setup '(slime-fancy slime-banner))
-
-;; turn on some helpers for haskell-mode
-(add-hook 'haskell-mode-hook (lambda ()
-			       (turn-on-haskell-doc-mode)
-			       (turn-on-haskell-indent)))
 
 ;; magit for hg
 (require 'monky)

@@ -14,13 +14,6 @@
 
 (require 'package)
 
-;; (if (and (version< emacs-version "26.3") (>= libgnutls-version 30604))
-;;     (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
-
-;; (add-to-list 'package-archives
-;; 	     '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-;; (add-to-list 'package-archives
-;;           '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
@@ -31,29 +24,17 @@
 
 (setq package-selected-packages
   '(anzu
-    auto-complete
-    company
     diminish
-    dumb-jump
     elpy
-    expand-region
-    flycheck
-    google-this
-    haskell-mode
     helm
     helm-ag
     helm-projectile
     highlight-parentheses
     ir-black-theme
-    jedi
     meson-mode
     monky
-    neotree
     powerline
     projectile
-    python-mode
-    ;; rustic
-    slime
     solarized-theme
     spacemacs-theme
     spaceline
