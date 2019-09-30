@@ -73,7 +73,6 @@ Has no effect if the character before point is not of the syntax class ')'."
 (diminish 'anzu-mode)
 
 ;; auto completion
-(require 'auto-complete-config)
 (ac-config-default)
 (diminish 'auto-complete-mode)
 (setq ac-comphist-file
@@ -84,7 +83,6 @@ Has no effect if the character before point is not of the syntax class ')'."
 (diminish 'global-company-mode)
 
 ;; enhanced menu navigation
-(require 'helm)
 (require 'helm-config)
 (helm-mode)
 (diminish 'helm-mode)
@@ -109,9 +107,6 @@ Has no effect if the character before point is not of the syntax class ')'."
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 (diminish 'volatile-highlights-mode)
-
-;; vim nerdtree like package
-(require 'neotree)
 
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
