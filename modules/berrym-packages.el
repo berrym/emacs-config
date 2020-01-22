@@ -32,14 +32,16 @@
     helm-projectile
     highlight-parentheses
     ir-black-theme
+    lsp-mode
     meson-mode
-    monky
     powerline
     projectile
+    rustic
     solarized-theme
     spacemacs-theme
     spaceline
     undo-tree
+    use-package
     volatile-highlights
     whitespace-cleanup-mode
     zenburn-theme))

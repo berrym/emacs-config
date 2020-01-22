@@ -142,18 +142,65 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 ;; only change the font (if it exists) if in grpahical mode
 (if (display-graphic-p)
-    (progn
-      (if (font-exists-p "Source Code Variable")
+   (progn
+     (if (font-exists-p "Fira Code 10")
 	  (progn
-	    (set-frame-font "Source Code Variable 10")
-	    (message "Using Source Code Variable font."))
-	(message "Source Code Variable font not found.  Using default font.")))
-  (message "Using default font."))
+	    (set-frame-font "Fira Code 10")
+	    (message "Using Fira Code font."))
+	(message "Fira Code Variable font not found.  Using default font.")))
+ (message "Using default font."))
 
-;; (load-theme 'spacemacs-dark t)
+(require 'use-package)
+(use-package composite
+	     :defer t
+	     :init
+	     (defvar composition-ligature-table (make-char-table nil))
+	     :hook
+	     (((prog-mode conf-mode nxml-mode markdown-mode help-mode)
+	       . (lambda () (setq-local composition-function-table composition-ligature-table))))
+	     :config
+	     ;; support ligatures, some toned down to prevent hang
+	     (when (version<= "27.0" emacs-version)
+	       (let ((alist
+		      '((33 . ".\\(?:\\(==\\|[!=]\\)[!=]?\\)")
+			(35 . ".\\(?:\\(###?\\|_(\\|[(:=?[_{]\\)[#(:=?[_{]?\\)")
+			(36 . ".\\(?:\\(>\\)>?\\)")
+			(37 . ".\\(?:\\(%\\)%?\\)")
+			(38 . ".\\(?:\\(&\\)&?\\)")
+			(42 . ".\\(?:\\(\\*\\*\\|[*>]\\)[*>]?\\)")
+			;; (42 . ".\\(?:\\(\\*\\*\\|[*/>]\\).?\\)")
+			(43 . ".\\(?:\\([>]\\)>?\\)")
+			;; (43 . ".\\(?:\\(\\+\\+\\|[+>]\\).?\\)")
+			(45 . ".\\(?:\\(-[->]\\|<<\\|>>\\|[-<>|~]\\)[-<>|~]?\\)")
+			;; (46 . ".\\(?:\\(\\.[.<]\\|[-.=]\\)[-.<=]?\\)")
+			(46 . ".\\(?:\\(\\.<\\|[-=]\\)[-<=]?\\)")
+			(47 . ".\\(?:\\(//\\|==\\|[=>]\\)[/=>]?\\)")
+			;; (47 . ".\\(?:\\(//\\|==\\|[*/=>]\\).?\\)")
+			(48 . ".\\(?:\\(x[a-fA-F0-9]\\).?\\)")
+			(58 . ".\\(?:\\(::\\|[:<=>]\\)[:<=>]?\\)")
+			(59 . ".\\(?:\\(;\\);?\\)")
+			(60 . ".\\(?:\\(!--\\|\\$>\\|\\*>\\|\\+>\\|-[-<>|]\\|/>\\|<[-<=]\\|=[<>|]\\|==>?\\||>\\||||?\\|~[>~]\\|[$*+/:<=>|~-]\\)[$*+/:<=>|~-]?\\)")
+			(61 . ".\\(?:\\(!=\\|/=\\|:=\\|<<\\|=[=>]\\|>>\\|[=>]\\)[=<>]?\\)")
+			(62 . ".\\(?:\\(->\\|=>\\|>[-=>]\\|[-:=>]\\)[-:=>]?\\)")
+			(63 . ".\\(?:\\([.:=?]\\)[.:=?]?\\)")
+			(91 . ".\\(?:\\(|\\)[]|]?\\)")
+			;; (92 . ".\\(?:\\([\\n]\\)[\\]?\\)")
+			(94 . ".\\(?:\\(=\\)=?\\)")
+			(95 . ".\\(?:\\(|_\\|[_]\\)_?\\)")
+			(119 . ".\\(?:\\(ww\\)w?\\)")
+			(123 . ".\\(?:\\(|\\)[|}]?\\)")
+			(124 . ".\\(?:\\(->\\|=>\\||[-=>]\\||||*>\\|[]=>|}-]\\).?\\)")
+			(126 . ".\\(?:\\(~>\\|[-=>@~]\\)[-=>@~]?\\)"))))
+		 (dolist (char-regexp alist)
+		   (set-char-table-range composition-ligature-table (car char-regexp)
+					 `([,(cdr char-regexp) 0 font-shape-gstring]))))
+	       (set-char-table-parent composition-ligature-table composition-function-table))
+	     )
+
+(load-theme 'spacemacs-dark t)
 ;; (load-theme 'solarized-dark t)
 ;; (load-theme 'ir-black t)
-(load-theme 'zenburn t)
+;; (load-theme 'zenburn t)
 
 (message "berrym-ui: module loaded successfully.")
 

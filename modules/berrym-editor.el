@@ -133,10 +133,6 @@
 ;; enable elpy
 (elpy-enable)
 
-;; magit for hg
-(require 'monky)
-(setq monky-process-type 'cmdserver)
-
 (message "berrym-editor: module loaded successfully.")
 
 (provide 'berrym-editor)
