@@ -64,14 +64,7 @@
 
 ;; basic hooks for all programming modes that derive from prog mode
 (add-hook 'prog-mode-hook (lambda ()
-                            (define-key prog-mode-map
-                              (kbd "C-m") 'newline-and-indent)
-			    (define-key prog-mode-map
-			      (kbd "RET") 'newline-and-indent)
-			    ;;(global-flycheck-mode)
-			    ;;(dumb-jump-mode)
 			    (projectile-mode)
-			    ;;(linum-mode t)
 			    (whitespace-cleanup-mode t)))
 
 ;; define a c programming style

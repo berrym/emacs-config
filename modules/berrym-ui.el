@@ -45,18 +45,17 @@ Has no effect if the character before point is not of the syntax class ')'."
 (when (fboundp 'fringe-mode)
        (fringe-mode 4))
 
-;; disable some gui components
-;;(if (display-graphic-p)
+;; disable some ui components
 (mapc
  (lambda (mode)
    (when (fboundp mode)
      (funcall mode 0)))
  '(tool-bar-mode
    menu-bar-mode
-   ;; scroll-bar-mode
-   ;; fringe-mode
+   scroll-bar-mode
+   fringe-mode
    blink-cursor-mode
-   )) ;;)
+   ))
 
 ;; cleanup whitespace
 (require 'whitespace-cleanup-mode)
@@ -141,14 +140,13 @@ Has no effect if the character before point is not of the syntax class ')'."
     t))
 
 ;; only change the font (if it exists) if in grpahical mode
-(if (display-graphic-p)
+ (if (display-graphic-p)
    (progn
-     (if (font-exists-p "Fira Code 10")
-	  (progn
-	    (set-frame-font "Fira Code 10")
-	    (message "Using Fira Code font."))
-	(message "Fira Code Variable font not found.  Using default font.")))
- (message "Using default font."))
+     (if (font-exists-p "Fira Code Retina 10")
+	 (progn
+	   (set-frame-font "Fira Code Retina 10")
+	   (message "Using Fira Code font."))
+       (message "Fira Code Variable font not found.  Using default font."))))
 
 (require 'use-package)
 (use-package composite
@@ -197,10 +195,11 @@ Has no effect if the character before point is not of the syntax class ')'."
 	       (set-char-table-parent composition-ligature-table composition-function-table))
 	     )
 
-(load-theme 'spacemacs-dark t)
-;; (load-theme 'solarized-dark t)
+;; (load-theme 'spacemacs-dark t)
+(load-theme 'solarized-dark t)
 ;; (load-theme 'ir-black t)
 ;; (load-theme 'zenburn t)
+;; (load-theme 'solarized-gruvbox-light t)
 
 (message "berrym-ui: module loaded successfully.")
 
