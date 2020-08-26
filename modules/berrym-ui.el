@@ -42,8 +42,8 @@ Has no effect if the character before point is not of the syntax class ')'."
     (size-indication-mode t)))
 
 ;; shrink the fringe but don't disable it
-(when (fboundp 'fringe-mode)
-       (fringe-mode 4))
+;; (when (fboundp 'fringe-mode)
+;;        (fringe-mode 4))
 
 ;; disable some ui components
 (mapc
@@ -153,7 +153,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 	(message "Fira Code Variable font not found.  Using default font."))))
 
 (use-package fira-code-mode
-  :custom (fira-code-mode-disabled-ligatures '())
+  :custom (fira-code-mode-disabled-ligatures '("*/" "..." "=>" "[]" "x" "*" ":"))
   :hook prog-mode)
 
 ;; change frame size
