@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-pacakges.el --- Required packages for my sanity
 
-;; Copyright (c) 2019 Michael Berry
+;; Copyright (c) 2020 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
@@ -27,6 +27,7 @@
     auto-complete
     diminish
     elpy
+    fira-code-mode
     helm
     helm-ag
     helm-projectile

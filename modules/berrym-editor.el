@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-editor.el --- Configure Editor Behaviors
 
-;; Copyright (c) 2013-2018 Michael Berry
+;; Copyright (c) 2020 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
@@ -125,6 +125,8 @@
 
 ;; enable elpy
 (elpy-enable)
+
+(setq inferior-lisp-program "sbcl")
 
 (message "berrym-editor: module loaded successfully.")
 

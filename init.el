@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;init.el --- GNU Emacs Configuration
 
-;; Copyright (c) 2019 Michael Berry
+;; Copyright (c) 2020 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
@@ -14,8 +14,8 @@
 ;; (package-initialize)
 
 ;;; Code:
-(when (version< emacs-version "26.3")
-  (error "This configuration only works with GNU Emacs >= 26.3"))
+(when (version< emacs-version "27.0")
+  (error "This configuration only works with GNU Emacs >= 27.0"))
 
 (defconst modules-dir (expand-file-name "modules" user-emacs-directory)
   "Directory for modules altering the standard Emacs environment.")

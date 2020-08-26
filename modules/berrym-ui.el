@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-ui.el --- User Interface Configuration
 
-;; Copyright (c) 2019 Michael Berry
+;; Copyright (c) 2020 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
@@ -132,6 +132,10 @@ Has no effect if the character before point is not of the syntax class ')'."
 ;; disable startup screen
 (setq inhibit-startup-screen t)
 
+;; use utf-8
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
 ;; set default font and color theme
 (defun font-exists-p (font)
   "Check if a FONT exists.  Return T if found NIL if not."
@@ -140,66 +144,26 @@ Has no effect if the character before point is not of the syntax class ')'."
     t))
 
 ;; only change the font (if it exists) if in grpahical mode
- (if (display-graphic-p)
-   (progn
-     (if (font-exists-p "Fira Code Retina 10")
-	 (progn
-	   (set-frame-font "Fira Code Retina 10")
-	   (message "Using Fira Code font."))
-       (message "Fira Code Variable font not found.  Using default font."))))
+(if (display-graphic-p)
+    (progn
+      (if (font-exists-p "Fira Code Retina 10")
+	  (progn
+	    (set-frame-font "Fira Code Retina 10")
+	    (message "Using Fira Code font."))
+	(message "Fira Code Variable font not found.  Using default font."))))
 
-(require 'use-package)
-(use-package composite
-	     :defer t
-	     :init
-	     (defvar composition-ligature-table (make-char-table nil))
-	     :hook
-	     (((prog-mode conf-mode nxml-mode markdown-mode help-mode)
-	       . (lambda () (setq-local composition-function-table composition-ligature-table))))
-	     :config
-	     ;; support ligatures, some toned down to prevent hang
-	     (when (version<= "27.0" emacs-version)
-	       (let ((alist
-		      '((33 . ".\\(?:\\(==\\|[!=]\\)[!=]?\\)")
-			(35 . ".\\(?:\\(###?\\|_(\\|[(:=?[_{]\\)[#(:=?[_{]?\\)")
-			(36 . ".\\(?:\\(>\\)>?\\)")
-			(37 . ".\\(?:\\(%\\)%?\\)")
-			(38 . ".\\(?:\\(&\\)&?\\)")
-			(42 . ".\\(?:\\(\\*\\*\\|[*>]\\)[*>]?\\)")
-			;; (42 . ".\\(?:\\(\\*\\*\\|[*/>]\\).?\\)")
-			(43 . ".\\(?:\\([>]\\)>?\\)")
-			;; (43 . ".\\(?:\\(\\+\\+\\|[+>]\\).?\\)")
-			(45 . ".\\(?:\\(-[->]\\|<<\\|>>\\|[-<>|~]\\)[-<>|~]?\\)")
-			;; (46 . ".\\(?:\\(\\.[.<]\\|[-.=]\\)[-.<=]?\\)")
-			(46 . ".\\(?:\\(\\.<\\|[-=]\\)[-<=]?\\)")
-			(47 . ".\\(?:\\(//\\|==\\|[=>]\\)[/=>]?\\)")
-			;; (47 . ".\\(?:\\(//\\|==\\|[*/=>]\\).?\\)")
-			(48 . ".\\(?:\\(x[a-fA-F0-9]\\).?\\)")
-			(58 . ".\\(?:\\(::\\|[:<=>]\\)[:<=>]?\\)")
-			(59 . ".\\(?:\\(;\\);?\\)")
-			(60 . ".\\(?:\\(!--\\|\\$>\\|\\*>\\|\\+>\\|-[-<>|]\\|/>\\|<[-<=]\\|=[<>|]\\|==>?\\||>\\||||?\\|~[>~]\\|[$*+/:<=>|~-]\\)[$*+/:<=>|~-]?\\)")
-			(61 . ".\\(?:\\(!=\\|/=\\|:=\\|<<\\|=[=>]\\|>>\\|[=>]\\)[=<>]?\\)")
-			(62 . ".\\(?:\\(->\\|=>\\|>[-=>]\\|[-:=>]\\)[-:=>]?\\)")
-			(63 . ".\\(?:\\([.:=?]\\)[.:=?]?\\)")
-			(91 . ".\\(?:\\(|\\)[]|]?\\)")
-			;; (92 . ".\\(?:\\([\\n]\\)[\\]?\\)")
-			(94 . ".\\(?:\\(=\\)=?\\)")
-			(95 . ".\\(?:\\(|_\\|[_]\\)_?\\)")
-			(119 . ".\\(?:\\(ww\\)w?\\)")
-			(123 . ".\\(?:\\(|\\)[|}]?\\)")
-			(124 . ".\\(?:\\(->\\|=>\\||[-=>]\\||||*>\\|[]=>|}-]\\).?\\)")
-			(126 . ".\\(?:\\(~>\\|[-=>@~]\\)[-=>@~]?\\)"))))
-		 (dolist (char-regexp alist)
-		   (set-char-table-range composition-ligature-table (car char-regexp)
-					 `([,(cdr char-regexp) 0 font-shape-gstring]))))
-	       (set-char-table-parent composition-ligature-table composition-function-table))
-	     )
+(use-package fira-code-mode
+  :custom (fira-code-mode-disabled-ligatures '())
+  :hook prog-mode)
 
-;; (load-theme 'spacemacs-dark t)
-(load-theme 'solarized-dark t)
-;; (load-theme 'ir-black t)
-;; (load-theme 'zenburn t)
-;; (load-theme 'solarized-gruvbox-light t)
+;; change frame size
+(when window-system (progn
+		      (set-frame-size (selected-frame) 120 50)
+		      (load-theme 'solarized-dark t)))
+		      ;; (load-theme 'spacemacs-dark t)
+		      ;; (load-theme 'ir-black t)
+		      ;; (load-theme 'zenburn t)
+		      ;; (load-theme 'solarized-gruvbox-light t)
 
 (message "berrym-ui: module loaded successfully.")
 

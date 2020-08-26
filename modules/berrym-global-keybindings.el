@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-global-keybindings.el --- Global keyboard shortcuts.
 
-;; Copyright (c) 2019 Michael Berry
+;; Copyright (c) 2020 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://bitbucket.org/berrym/emacs-config
