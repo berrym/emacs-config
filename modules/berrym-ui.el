@@ -35,41 +35,41 @@ Has no effect if the character before point is not of the syntax class ')'."
 (diminish 'highlight-parentheses-mode)
 
 ;; mode line settings
-(unless (display-graphic-p)
+(unless (window-system)
   (progn
     (line-number-mode t)
     (column-number-mode t)
     (size-indication-mode t)))
 
-;; shrink the fringe but don't disable it
-;; (when (fboundp 'fringe-mode)
-;;        (fringe-mode 4))
-
 ;; disable some ui components
-(mapc
- (lambda (mode)
-   (when (fboundp mode)
-     (funcall mode 0)))
- '(tool-bar-mode
-   menu-bar-mode
-   scroll-bar-mode
-   fringe-mode
-   blink-cursor-mode
-   ))
+(when (window-system)
+  (mapc
+   (lambda (mode)
+     (when (fboundp mode)
+       (funcall mode 0)))
+   '(tool-bar-mode
+     menu-bar-mode
+     scroll-bar-mode
+     fringe-mode
+     blink-cursor-mode)))
 
 ;; cleanup whitespace
-(require 'whitespace-cleanup-mode)
-(diminish 'whitespace-cleanup-mode)
+(use-package whitespace-cleanup-mode
+  :diminish
+  :hook
+  (after-init . whitespace-cleanup-mode))
 
 ;; undo tree
-(require 'undo-tree)
-(global-undo-tree-mode)
-(diminish 'undo-tree-mode)
+(use-package undo-tree
+  :diminish
+  :hook
+  (after-init . undo-tree-mode))
 
 ;; show number of search matches
-(require 'anzu)
-(global-anzu-mode t)
-(diminish 'anzu-mode)
+(use-package anzu
+  :diminish
+  :hook
+  (after-init . anzu-mode))
 
 ;; auto completion
 (ac-config-default)
@@ -77,36 +77,34 @@ Has no effect if the character before point is not of the syntax class ')'."
 (setq ac-comphist-file
       (expand-file-name "ac-comphist.dat" save-files-dir))
 
-(require 'company)
-(global-company-mode)
-(diminish 'global-company-mode)
+(use-package company
+  :diminish
+  :hook (after-init . global-company-mode))
 
 ;; enhanced menu navigation
-(require 'helm-config)
-(helm-mode)
-(diminish 'helm-mode)
+(use-package helm
+  :bind (("C-c h" . 'helm-mini)
+	 ("M-x" . helm-M-x)
+	 ("C-x C-f" . 'helm-find-files)
+	 ("C-x C-b" . 'helm-buffers-list)
+	 ("C-x b" . 'helm-buffers-list)
+	 ("M-i" . 'helm-imenu)
+         ([f10] . helm-buffers-list)
+         ([S-f10] . helm-recentf)))
 
-(require 'projectile)
-(projectile-mode t)
-(setq projectile-known-projects-file
-      (expand-file-name "projectile-bookmarks.eld" save-files-dir))
-(diminish 'projectile-mode)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;; project management
+(use-package projectile
+  :bind-keymap ("C-c p" . projectile-command-map)
+  :config (setq projectile-known-projects-file
+		(expand-file-name "projectile-bookmarks.eld" save-files-dir)))
 
-(require 'helm-projectile)
-(helm-projectile-on)
+(use-package helm-projectile
+  :config (helm-projectile-on))
 
-;; use spaceline powerline config
-(if (display-graphic-p)
-    (progn
-      (require 'spaceline-config)
-      (spaceline-spacemacs-theme)
-      (spaceline-helm-mode t)
-      (spaceline-info-mode t)))
-
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
-(diminish 'volatile-highlights-mode)
+(use-package volatile-highlights
+  :diminish
+  :hook
+  (after-init . volatile-highlights-mode))
 
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -139,31 +137,31 @@ Has no effect if the character before point is not of the syntax class ')'."
 ;; set default font and color theme
 (defun font-exists-p (font)
   "Check if a FONT exists.  Return T if found NIL if not."
-  (if (null (x-list-fonts font))
-      nil
-    t))
+  (if (null (x-list-fonts font)) nil t))
 
-;; only change the font (if it exists) if in grpahical mode
-(if (display-graphic-p)
-    (progn
-      (if (font-exists-p "Fira Code Retina 10")
-	  (progn
-	    (set-frame-font "Fira Code Retina 10")
-	    (message "Using Fira Code font."))
-	(message "Fira Code Variable font not found.  Using default font."))))
-
-(use-package fira-code-mode
-  :custom (fira-code-mode-disabled-ligatures '("*/" "..." "=>" "[]" "x" "*" ":"))
-  :hook prog-mode)
-
-;; change frame size
-(when window-system (progn
-		      (set-frame-size (selected-frame) 120 50)
-		      (load-theme 'solarized-dark t)))
-		      ;; (load-theme 'spacemacs-dark t)
-		      ;; (load-theme 'ir-black t)
-		      ;; (load-theme 'zenburn t)
-		      ;; (load-theme 'solarized-gruvbox-light t)
+;; change font, change frame size, load a color theme
+(when (window-system)
+  (progn
+    (if (font-exists-p "Fira Code Retina 10")
+	(progn
+	  (set-frame-font "Fira Code Retina 10")
+	  (message "Using Fira Code font."))
+      (message "Fira Code font not found.  Using default font."))
+    ;; (use-package fira-code-mode
+    ;;   :custom
+    ;;   (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x"))
+    ;;   :config
+    ;;   (diminish 'fira-code-mode)
+    ;;   :hook
+    ;;   (prog-mode))
+    (use-package spaceline-config
+      :diminish
+      :hook
+      ((after-init . spaceline-spacemacs-theme)
+       (spaceline-helm-mode)
+       (spaceline-info-mode)))
+    (set-frame-size (selected-frame) 120 50)
+    (load-theme 'solarized-dark t)))
 
 (message "berrym-ui: module loaded successfully.")
 

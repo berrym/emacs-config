@@ -62,11 +62,6 @@
     (print (car l))
     (setq l (cdr l))))
 
-;; basic hooks for all programming modes that derive from prog mode
-(add-hook 'prog-mode-hook (lambda ()
-			    (projectile-mode)
-			    (whitespace-cleanup-mode t)))
-
 ;; define a c programming style
 (defconst berrym-c-style
   '((c-basic-offset                 . 4)
@@ -122,6 +117,7 @@
   "Michael Berry C Programming Style.")
 (c-add-style "berrym" berrym-c-style)
 (add-hook 'c-mode-common-hook (lambda () (c-set-style "berrym")))
+(add-hook 'rustic-mode-hook (lambda () (c-set-style "berrym")))
 
 ;; enable elpy
 (elpy-enable)

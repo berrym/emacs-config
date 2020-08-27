@@ -18,12 +18,6 @@
 (global-set-key (kbd "C-S-k") 'transpose-line-up)
 (global-set-key (kbd "<f5>") 'linum-mode)
 (global-set-key (kbd "<f11>") 'package-show-package-list)
-(global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-(global-set-key (kbd "M-i") 'helm-imenu)
 
 (message "berrym-global-keybindings: module loaded successfully.")
 
