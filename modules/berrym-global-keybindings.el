@@ -4,7 +4,7 @@
 ;; Copyright (c) 2020 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
-;; URL: https://bitbucket.org/berrym/emacs-config
+;; URL: https://github.com/berrym/emacs-config
 
 ;; This file is not part of GNU Emacs.
 ;; License: GPLv3
