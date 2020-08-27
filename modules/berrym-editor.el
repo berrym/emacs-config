@@ -119,8 +119,19 @@
 (add-hook 'c-mode-common-hook (lambda () (c-set-style "berrym")))
 (add-hook 'rustic-mode-hook (lambda () (c-set-style "berrym")))
 
-;; enable elpy
-(elpy-enable)
+(use-package ruby-mode
+  :diminish
+  :mode "\\.rb\\'"
+  :interpreter "ruby")
+
+(use-package python
+  :diminish
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode))
+
+(use-package elpy
+  :diminish
+  :hook (after-init . elpy-enable))
 
 (setq inferior-lisp-program "sbcl")
 

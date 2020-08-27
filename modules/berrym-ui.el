@@ -147,13 +147,10 @@ Has no effect if the character before point is not of the syntax class ')'."
 	  (set-frame-font "Fira Code Retina 10")
 	  (message "Using Fira Code font."))
       (message "Fira Code font not found.  Using default font."))
-    ;; (use-package fira-code-mode
-    ;;   :custom
-    ;;   (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x"))
-    ;;   :config
-    ;;   (diminish 'fira-code-mode)
-    ;;   :hook
-    ;;   (prog-mode))
+    (use-package fira-code-mode
+      :diminish
+      :custom (fira-code-mode-disabled-ligatures '())
+      :hook (prog-mode))
     (use-package spaceline-config
       :diminish
       :hook
