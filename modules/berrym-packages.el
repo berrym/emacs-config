@@ -34,10 +34,12 @@
     highlight-parentheses
     ir-black-theme
     lsp-mode
+    magit
     meson-mode
     powerline
     projectile
     rustic
+    slime
     solarized-theme
     spacemacs-theme
     spaceline

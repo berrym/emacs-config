@@ -11,6 +11,7 @@
 ;; License: GPLv3
 
 ;;; Code:
+
 (defconst save-files-dir (expand-file-name "save-files" user-emacs-directory)
   "Directory for storing autosave and backup files.")
 
@@ -53,54 +54,6 @@ Has no effect if the character before point is not of the syntax class ')'."
      fringe-mode
      blink-cursor-mode)))
 
-;; cleanup whitespace
-(use-package whitespace-cleanup-mode
-  :diminish
-  :hook
-  (after-init . whitespace-cleanup-mode))
-
-;; undo tree
-(use-package undo-tree
-  :diminish
-  :hook
-  (after-init . undo-tree-mode))
-
-;; show number of search matches
-(use-package anzu
-  :diminish
-  :hook
-  (after-init . anzu-mode))
-
-;; auto completion
-(ac-config-default)
-(diminish 'auto-complete-mode)
-(setq ac-comphist-file
-      (expand-file-name "ac-comphist.dat" save-files-dir))
-
-(use-package company
-  :diminish
-  :hook (after-init . global-company-mode))
-
-;; enhanced menu navigation
-(use-package helm
-  :bind (("C-c h" . 'helm-mini)
-	 ("M-x" . helm-M-x)
-	 ("C-x C-f" . 'helm-find-files)
-	 ("C-x C-b" . 'helm-buffers-list)
-	 ("C-x b" . 'helm-buffers-list)
-	 ("M-i" . 'helm-imenu)
-         ([f10] . helm-buffers-list)
-         ([S-f10] . helm-recentf)))
-
-;; project management
-(use-package projectile
-  :bind-keymap ("C-c p" . projectile-command-map)
-  :config (setq projectile-known-projects-file
-		(expand-file-name "projectile-bookmarks.eld" save-files-dir)))
-
-(use-package helm-projectile
-  :config (helm-projectile-on))
-
 (use-package volatile-highlights
   :diminish
   :hook
@@ -130,10 +83,6 @@ Has no effect if the character before point is not of the syntax class ')'."
 ;; disable startup screen
 (setq inhibit-startup-screen t)
 
-;; use utf-8
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-
 ;; set default font and color theme
 (defun font-exists-p (font)
   "Check if a FONT exists.  Return T if found NIL if not."
@@ -158,7 +107,7 @@ Has no effect if the character before point is not of the syntax class ')'."
        (spaceline-helm-mode)
        (spaceline-info-mode)))
     (set-frame-size (selected-frame) 120 50)
-    (load-theme 'solarized-dark t)))
+    (load-theme 'solarized-wombat-dark t)))
 
 (message "berrym-ui: module loaded successfully.")
 

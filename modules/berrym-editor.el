@@ -11,6 +11,7 @@
 ;; License: GPLv3
 
 ;;; Code:
+
 (defun repeat-last-search-forward ()
   "Repeat last search forward."
   (interactive)
@@ -117,8 +118,94 @@
   "Michael Berry C Programming Style.")
 (c-add-style "berrym" berrym-c-style)
 (add-hook 'c-mode-common-hook (lambda () (c-set-style "berrym")))
-(add-hook 'rustic-mode-hook (lambda () (c-set-style "berrym")))
 
+;; reload files automatically if externally modified
+(global-auto-revert-mode t)
+
+;; tabs are 4 spaces
+(setq-default tab-width 4
+	          indent-tabs-mode nil)
+
+;; kill current buffer
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+;; enhanced menu navigation
+(use-package helm
+  :diminish
+  :config
+  (require 'helm-config)
+  (helm-mode 1)
+  (helm-autoresize-mode 1)
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (setq helm-buffers-fuzzy-matching t)
+  (setq helm-recentf-fuzzy-match t)
+  (setq helm-split-window-in-side-p t)
+  (setq helm-move-to-line-cycle-in-source t)
+  (setq helm-ff-search-library-in-sexp t)
+  (setq helm-scroll-amount 8)
+  (setq helm-ff-file-name-history-use-recentf t)
+  (setq helm-echo-input-in-header-line t)
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 20)
+  :bind
+  (("C-c h m"     . 'helm-mini)
+   ("M-x"         . 'helm-M-x)
+   ("C-x C-f"     . 'helm-find-files)
+   ("C-x C-b"     . 'helm-buffers-list)
+   ("C-x b"       . 'helm-buffers-list)
+   ("M-i"         . 'helm-imenu)
+   ("M-y"         . 'helm-show-kill-ring)
+   ("C-c h M-s o" . 'helm-occur)
+   ("C-c h a"     . 'helm-apropos)
+   ([f10]         . 'helm-buffers-list)
+   ([S-M-f10]     . 'helm-recentf)))
+
+;; project management
+(use-package projectile
+  :diminish
+  :bind
+  ("C-c p" . projectile-command-map)
+  :config
+  (projectile-global-mode)
+  (setq projectile-completion-system 'helm)
+  (setq projectile-known-projects-file
+	(expand-file-name "projectile-bookmarks.eld" save-files-dir)))
+
+(use-package helm-projectile
+  :config
+  (helm-projectile-on))
+
+;; cleanup whitespace
+(use-package whitespace-cleanup-mode
+  :diminish
+  :hook
+  ((after-init . whitespace-cleanup-mode)
+   (before-save-hook . whitespace-cleanup)))
+
+;; undo tree
+(use-package undo-tree
+  :diminish
+  :hook
+  (after-init . undo-tree-mode))
+
+;; show number of search matches
+(use-package anzu
+  :diminish
+  :hook
+  (after-init . anzu-mode))
+
+;; auto completion
+(ac-config-default)
+(diminish 'auto-complete-mode)
+(setq ac-comphist-file
+      (expand-file-name "ac-comphist.dat" save-files-dir))
+
+(use-package company
+  :diminish
+  :hook
+  (after-init . global-company-mode))
+
+;; language modes
 (use-package ruby-mode
   :diminish
   :mode "\\.rb\\'"
@@ -131,7 +218,10 @@
 
 (use-package elpy
   :diminish
-  :hook (after-init . elpy-enable))
+  :hook
+  (after-init . elpy-enable)
+  :config
+  (setq elpy-rpc-backend "jedi"))
 
 (setq inferior-lisp-program "sbcl")
 

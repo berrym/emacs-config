@@ -12,6 +12,9 @@
 
 ;;; Code:
 
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
 (defconst save-files-dir (expand-file-name "save-files" user-emacs-directory)
   "Directory for storing autosave and backup files.")
 
