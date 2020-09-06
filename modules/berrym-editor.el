@@ -205,6 +205,12 @@
   :hook
   (after-init . global-company-mode))
 
+;; git porcelain
+(use-package magit
+  :diminish
+  :bind
+  (("C-x g" . magit-status)))
+  
 ;; language modes
 (use-package ruby-mode
   :diminish
