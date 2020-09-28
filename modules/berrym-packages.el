@@ -19,9 +19,6 @@
 
 (setq package-user-dir (expand-file-name "packages" user-emacs-directory))
 
-(unless package-archive-contents
-  (package-refresh-contents))
-
 (setq package-selected-packages
   '(anzu
     auto-complete
@@ -36,6 +33,7 @@
     lsp-mode
     magit
     meson-mode
+    minimap
     powerline
     projectile
     rustic
@@ -43,6 +41,7 @@
     solarized-theme
     spacemacs-theme
     spaceline
+    treemacs
     undo-tree
     use-package
     volatile-highlights

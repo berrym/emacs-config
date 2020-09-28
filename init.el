@@ -32,3 +32,4 @@
 (if (not (server-running-p)) (server-start))
 
 ;;; init.el ends here
+(put 'dired-find-alternate-file 'disabled nil)

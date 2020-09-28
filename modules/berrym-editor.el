@@ -229,6 +229,8 @@
   :config
   (setq elpy-rpc-backend "jedi"))
 
+(setq minimap-window-location 'right)
+
 (setq inferior-lisp-program "sbcl")
 
 (message "berrym-editor: module loaded successfully.")
