@@ -22,9 +22,13 @@
 (setq package-selected-packages
   '(anzu
     auto-complete
+    cargo
+    counsel
     diminish
     elpy
+    expand-region
     fira-code-mode
+    git-messenger
     helm
     helm-ag
     helm-projectile
@@ -44,6 +48,7 @@
     treemacs
     undo-tree
     use-package
+    vterm
     volatile-highlights
     whitespace-cleanup-mode
     zenburn-theme))

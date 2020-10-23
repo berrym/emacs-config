@@ -73,44 +73,44 @@
     (indent-tabs-mode               . nil)
     (case-fold-search               . nil)
     (c-hanging-braces-alist         . ((brace-list-open)
-				       (brace-list-intro)
-				       (brace-list-close)
-				       (brace-entry-open)
-				       (substatement-open after)
-				       (block-close . c-snug-do-while)
-				       (arglist-cont-nonempty)
-				       (defun-open after)
-				       (class-open after)
-				       (class-close berfore after)
-				       (inexpr-class-open after)
-				       (inexpr-class-close before)
-				       (namespace-open after)
-				       (inline-open after)
-				       (inline-close before after)
-				       (block-open after)
-				       (extern-lang-open after)
-				       (extern-lang-close after)
-				       (statement-case-open after)))
+                       (brace-list-intro)
+                       (brace-list-close)
+                       (brace-entry-open)
+                       (substatement-open after)
+                       (block-close . c-snug-do-while)
+                       (arglist-cont-nonempty)
+                       (defun-open after)
+                       (class-open after)
+                       (class-close berfore after)
+                       (inexpr-class-open after)
+                       (inexpr-class-close before)
+                       (namespace-open after)
+                       (inline-open after)
+                       (inline-close before after)
+                       (block-open after)
+                       (extern-lang-open after)
+                       (extern-lang-close after)
+                       (statement-case-open after)))
     (c-hanging-colons-alist         . ((case-label)
-    				       (label after)
-    				       (access-label after)
-    				       (member-init-intro before)
-    				       (inher-intro)))
+                           (label after)
+                           (access-label after)
+                           (member-init-intro before)
+                           (inher-intro)))
     (c-cleanup-list                 . ((brace-else-brace)
-				       (brace-elseif-brace)
-				       (brace-catch-brace)
-				       (empty-defun-braces)
-				       (defun-close-semi)
-				       (scope-operator)))
+                       (brace-elseif-brace)
+                       (brace-catch-brace)
+                       (empty-defun-braces)
+                       (defun-close-semi)
+                       (scope-operator)))
     (c-offsets-alist                . ((statement-block-intro . +)
-				       (statement-case-intro  . +)
-				       (knr-argdecl-intro     . 0)
-				       (substatement-open     . 0)
-				       (substatement-label    . 0)
-				       (label                 . 0)
-				       (statement-cont        . +)
-				       (inline-open           . 0)
-				       (inexpr-class          . 0)))
+                       (statement-case-intro  . +)
+                       (knr-argdecl-intro     . 0)
+                       (substatement-open     . 0)
+                       (substatement-label    . 0)
+                       (label                 . 0)
+                       (statement-cont        . +)
+                       (inline-open           . 0)
+                       (inexpr-class          . 0)))
     (c-hanging-semi&comma-criteria
      . (c-semi&comma-no-newlines-for-oneline-inliners
         c-semi&comma-inside-parenlist
@@ -124,10 +124,22 @@
 
 ;; tabs are 4 spaces
 (setq-default tab-width 4
-	          indent-tabs-mode nil)
+              indent-tabs-mode nil)
 
 ;; kill current buffer
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+(use-package auto-complete
+  :diminish
+  :config
+  (ac-config-default)
+  (setq ac-comphist-file
+      (expand-file-name "ac-comphist.dat" save-files-dir)))
+
+(use-package expand-region
+  :diminish
+  :bind
+  (("C-=" . er/expand-region)))
 
 ;; enhanced menu navigation
 (use-package helm
@@ -137,16 +149,16 @@
   (helm-mode 1)
   (helm-autoresize-mode 1)
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
-  (setq helm-buffers-fuzzy-matching t)
-  (setq helm-recentf-fuzzy-match t)
-  (setq helm-split-window-in-side-p t)
-  (setq helm-move-to-line-cycle-in-source t)
-  (setq helm-ff-search-library-in-sexp t)
-  (setq helm-scroll-amount 8)
-  (setq helm-ff-file-name-history-use-recentf t)
-  (setq helm-echo-input-in-header-line t)
-  (setq helm-autoresize-max-height 0)
-  (setq helm-autoresize-min-height 20)
+  (setq helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match t
+        helm-split-window-in-side-p t
+        helm-move-to-line-cycle-in-source t
+        helm-ff-search-library-in-sexp t
+        helm-scroll-amount 8
+        helm-ff-file-name-history-use-recentf t
+        helm-echo-input-in-header-line t
+        helm-autoresize-max-height 0
+        helm-autoresize-min-height 20)
   :bind
   (("C-c h m"     . 'helm-mini)
    ("M-x"         . 'helm-M-x)
@@ -160,6 +172,21 @@
    ([f10]         . 'helm-buffers-list)
    ([S-M-f10]     . 'helm-recentf)))
 
+;; NERDTree like file browser
+(use-package treemacs
+  :diminish
+  :bind
+  (("C-c t" . treemacs)
+   ("s-a"   . treemacs)))
+
+;; minimap
+(use-package minimap
+  :diminish
+  :config
+  (setq minimap-window-location 'right)
+  :bind
+  (([f10] . minimap-mode)))
+
 ;; project management
 (use-package projectile
   :diminish
@@ -167,11 +194,12 @@
   ("C-c p" . projectile-command-map)
   :config
   (projectile-global-mode)
-  (setq projectile-completion-system 'helm)
-  (setq projectile-known-projects-file
-	(expand-file-name "projectile-bookmarks.eld" save-files-dir)))
+  (setq projectile-completion-system 'helm
+        projectile-known-projects-file
+        (expand-file-name "projectile-bookmarks.eld" save-files-dir)))
 
 (use-package helm-projectile
+  :diminish
   :config
   (helm-projectile-on))
 
@@ -179,7 +207,7 @@
 (use-package whitespace-cleanup-mode
   :diminish
   :hook
-  ((after-init . whitespace-cleanup-mode)
+  ((after-init       . whitespace-cleanup-mode)
    (before-save-hook . whitespace-cleanup)))
 
 ;; undo tree
@@ -194,23 +222,72 @@
   :hook
   (after-init . anzu-mode))
 
-;; auto completion
-(ac-config-default)
-(diminish 'auto-complete-mode)
-(setq ac-comphist-file
-      (expand-file-name "ac-comphist.dat" save-files-dir))
-
 (use-package company
   :diminish
+  :init
+  (setq company-idle-delay t
+        company-minimum-prefix-length 1
+        company-tooltip-align-annotations t)
   :hook
-  (after-init . global-company-mode))
+  (after-init . global-company-mode)
+  :bind
+  (:map prog-mode-map
+        ("C-i"   . company-indent-or-complete-common)
+        ("C-M-i" . counsel-company)))
+
+(use-package lsp-mode
+  :diminish
+  :commands lsp
+  :hook
+  ((before-save . lsp-format-buffer)
+   (before-save . lsp-organize-imports))
+  :bind
+  (("C-c d"   . lsp-describe-thing-at-point)
+   ("C-c e n" . flymake-goto-next-error)
+   ("C-c e p" . flymake-goto-prev-error)
+   ("C-c e r" . lsp-find-references)
+   ("C-c e R" . lsp-rename)
+   ("C-c e i" . lsp-find-implementation)
+   ("C-c e t" . lsp-find-type-definition)))
+
+(use-package racer
+  :diminish
+  :init
+  (setq company-tooltip-align-annotations t)
+  :hook
+  (racer-mode-hook . company-mode))
+
+(use-package rustic
+  :diminish
+  :init
+  (setq rustic-lsp-server 'rust-analyzer)
+  :hook
+  ((rustic-mode . (lambda ()
+                    (company-mode)
+                    (set (make-local-variable 'company-backends)
+                         '((company-capf company-files :with company-yasnippet)
+                           (company-dabbrev-code company-dabbrev))))))
+  :config
+  (setq rust-indent-method-chain t)
+  (setq rustic-lsp-format t)
+  (setq rustic-format-on-save t))
+
 
 ;; git porcelain
 (use-package magit
   :diminish
   :bind
-  (("C-x g" . magit-status)))
-  
+  (("C-x g"   . magit-status)
+   ("C-x M-g" . magit-dispatch)))
+
+(use-package git-messenger
+  :diminish
+  :bind
+  (("C-x G" . git-messenger:popup-message))
+  :config
+  (setq git-messenger:show-detail t
+        git-messenger:use-magit-popup t))
+
 ;; language modes
 (use-package ruby-mode
   :diminish
@@ -229,7 +306,8 @@
   :config
   (setq elpy-rpc-backend "jedi"))
 
-(setq minimap-window-location 'right)
+(use-package vterm
+  :diminish)
 
 (setq inferior-lisp-program "sbcl")
 
