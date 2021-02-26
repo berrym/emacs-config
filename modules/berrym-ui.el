@@ -107,7 +107,7 @@ Has no effect if the character before point is not of the syntax class ')'."
        (spaceline-helm-mode)
        (spaceline-info-mode)))
     (set-frame-size (selected-frame) 120 50)
-    (load-theme 'solarized-wombat-dark t)))
+    (load-theme 'solarized-gruvbox-dark t))) ;; whiteboard t)))
 
 (message "berrym-ui: module loaded successfully.")
 

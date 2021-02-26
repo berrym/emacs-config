@@ -309,7 +309,14 @@
 (use-package vterm
   :diminish)
 
-(setq inferior-lisp-program "sbcl")
+
+(use-package haskell-mode
+  :diminish
+  :init
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  (add-hook 'haskell-mode-hook 'flycheck-mode))
+
+(setq inferior-lisp-program "ros -Q run")
 
 (message "berrym-editor: module loaded successfully.")
 
