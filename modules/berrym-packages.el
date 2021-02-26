@@ -29,6 +29,7 @@
     expand-region
     fira-code-mode
     git-messenger
+    haskell-mode
     helm
     helm-ag
     helm-projectile
