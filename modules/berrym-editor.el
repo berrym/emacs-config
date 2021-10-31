@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-editor.el --- Configure Editor Behaviors
 
-;; Copyright (c) 2020 Michael Berry
+;; Copyright (c) 2021 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -230,10 +230,19 @@
         company-tooltip-align-annotations t)
   :hook
   (after-init . global-company-mode)
+  :config
+  (setq company-backends
+        '((company-files          ; files & directory
+           company-keywords       ; keywords
+           company-capf)  ; completion-at-point-functions
+          (company-abbrev company-dabbrev)))
   :bind
-  (:map prog-mode-map
-        ("C-i"   . company-indent-or-complete-common)
-        ("C-M-i" . counsel-company)))
+  ("C-i"   . company-indent-or-complete-common)
+  ("C-M-i" . counsel-company))
+
+(use-package company-quickhelp
+    :config
+    (company-quickhelp-mode))
 
 (use-package lsp-mode
   :diminish
@@ -294,21 +303,23 @@
   :mode "\\.rb\\'"
   :interpreter "ruby")
 
-(use-package python
-  :diminish
-  :mode ("\\.py\\'" . python-mode)
-  :interpreter ("python" . python-mode))
-
 (use-package elpy
   :diminish
-  :hook
-  (after-init . elpy-enable)
+  :init
+  (elpy-enable))
+
+(use-package blacken
+  :diminish
+  :hook (python-mode . blacken-mode)
   :config
-  (setq elpy-rpc-backend "jedi"))
+  (setq blacken-line-length '80))
+
+(use-package python-docstring
+  :diminish
+  :hook (python-mode . python-docstring-mode))
 
 (use-package vterm
   :diminish)
-
 
 (use-package haskell-mode
   :diminish

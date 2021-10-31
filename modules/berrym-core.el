@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-core.el --- Basic settings for GNU Emacs
 
-;; Copyright (c) 2020 Michael Berry
+;; Copyright (c) 2021 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -11,9 +11,6 @@
 ;; License: GPLv3
 
 ;;; Code:
-
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
 
 (defconst save-files-dir (expand-file-name "save-files" user-emacs-directory)
   "Directory for storing autosave and backup files.")

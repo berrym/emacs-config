@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-pacakges.el --- Required packages for my sanity
 
-;; Copyright (c) 2020 Michael Berry
+;; Copyright (c) 2021 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -22,7 +22,10 @@
 (setq package-selected-packages
   '(anzu
     auto-complete
+    blacken
     cargo
+    company
+    company-quickhelp
     counsel
     diminish
     elpy
@@ -41,6 +44,7 @@
     minimap
     powerline
     projectile
+    python-docstring
     rustic
     slime
     solarized-theme
@@ -49,6 +53,7 @@
     treemacs
     undo-tree
     use-package
+    vi-tilde-fringe
     vterm
     volatile-highlights
     whitespace-cleanup-mode

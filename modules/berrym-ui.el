@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-ui.el --- User Interface Configuration
 
-;; Copyright (c) 2020 Michael Berry
+;; Copyright (c) 2021 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -51,7 +51,7 @@ Has no effect if the character before point is not of the syntax class ')'."
    '(tool-bar-mode
      menu-bar-mode
      scroll-bar-mode
-     fringe-mode
+     ;; fringe-mode
      blink-cursor-mode)))
 
 (use-package volatile-highlights
@@ -88,25 +88,42 @@ Has no effect if the character before point is not of the syntax class ')'."
   "Check if a FONT exists.  Return T if found NIL if not."
   (if (null (x-list-fonts font)) nil t))
 
+(use-package vi-tilde-fringe
+  :diminish
+  :init
+  (global-vi-tilde-fringe-mode))
+
+(use-package linum
+  :diminish
+  :init
+  (global-linum-mode))
+
+(use-package minimap
+  :diminish
+  :init
+  (minimap-mode))
+
 ;; change font, change frame size, load a color theme
 (when (window-system)
   (progn
-    (if (font-exists-p "Fira Code Retina 10")
+    (if (font-exists-p "Source Code Pro 10")
 	(progn
-	  (set-frame-font "Fira Code Retina 10")
-	  (message "Using Fira Code font."))
-      (message "Fira Code font not found.  Using default font."))
+	  (set-frame-font "Source Code Pro 10")
+	  (message "Using Source Code Pro font."))
+      (message "Source Code Pro font not found.  Using default font."))
     (use-package fira-code-mode
       :diminish
-      :custom (fira-code-mode-disabled-ligatures '())
-      :hook (prog-mode))
+      :custom
+      (fira-code-mode-disabled-ligatures '())
+      :hook
+      (prog-mode))
     (use-package spaceline-config
       :diminish
       :hook
       ((after-init . spaceline-spacemacs-theme)
        (spaceline-helm-mode)
        (spaceline-info-mode)))
-    (set-frame-size (selected-frame) 120 50)
+    (set-frame-size (selected-frame) 122 50)
     (load-theme 'solarized-gruvbox-dark t))) ;; whiteboard t)))
 
 (message "berrym-ui: module loaded successfully.")

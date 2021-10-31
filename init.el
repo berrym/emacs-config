@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;init.el --- GNU Emacs Configuration
 
-;; Copyright (c) 2020 Michael Berry
+;; Copyright (c) 2021 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -14,8 +14,12 @@
 ;; (package-initialize)
 
 ;;; Code:
+
 (when (version< emacs-version "27.0")
   (error "This configuration only works with GNU Emacs >= 27.0"))
+
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
 
 (defconst modules-dir (expand-file-name "modules" user-emacs-directory)
   "Directory for modules altering the standard Emacs environment.")
