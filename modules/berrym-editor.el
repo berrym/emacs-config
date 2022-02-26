@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-editor.el --- Configure Editor Behaviors
 
-;; Copyright (c) 2021 Michael Berry
+;; Copyright (c) 2022 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -125,9 +125,6 @@
 ;; tabs are 4 spaces
 (setq-default tab-width 4
               indent-tabs-mode nil)
-
-;; kill current buffer
-(global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 (use-package auto-complete
   :diminish
@@ -312,7 +309,7 @@
   :diminish
   :hook (python-mode . blacken-mode)
   :config
-  (setq blacken-line-length '80))
+  (setq blacken-line-length '79))
 
 (use-package python-docstring
   :diminish

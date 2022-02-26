@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-ui.el --- User Interface Configuration
 
-;; Copyright (c) 2021 Michael Berry
+;; Copyright (c) 2022 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -50,9 +50,11 @@ Has no effect if the character before point is not of the syntax class ')'."
        (funcall mode 0)))
    '(tool-bar-mode
      menu-bar-mode
-     scroll-bar-mode
+     scroll-bar-mode)))
      ;; fringe-mode
-     blink-cursor-mode)))
+     ;; blink-cursor-mode)))
+
+(setq use-dialog-box 0)
 
 (use-package volatile-highlights
   :diminish
@@ -106,11 +108,11 @@ Has no effect if the character before point is not of the syntax class ')'."
 ;; change font, change frame size, load a color theme
 (when (window-system)
   (progn
-    (if (font-exists-p "Source Code Pro 10")
+    (if (font-exists-p "Fira Code 10")
 	(progn
-	  (set-frame-font "Source Code Pro 10")
-	  (message "Using Source Code Pro font."))
-      (message "Source Code Pro font not found.  Using default font."))
+	  (set-frame-font "Fira Code 10")
+	  (message "Using Fira Code font."))
+      (message "Fira Code font not found.  Using default font."))
     (use-package fira-code-mode
       :diminish
       :custom
@@ -123,8 +125,8 @@ Has no effect if the character before point is not of the syntax class ')'."
       ((after-init . spaceline-spacemacs-theme)
        (spaceline-helm-mode)
        (spaceline-info-mode)))
-    (set-frame-size (selected-frame) 122 50)
-    (load-theme 'solarized-gruvbox-dark t))) ;; whiteboard t)))
+    ;; (set-frame-size (selected-frame) 122 50)
+    (load-theme 'afternoon t))) ;; whiteboard t)))
 
 (message "berrym-ui: module loaded successfully.")
 

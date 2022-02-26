@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;init.el --- GNU Emacs Configuration
 
-;; Copyright (c) 2021 Michael Berry
+;; Copyright (c) 2022 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -36,4 +36,3 @@
 (if (not (server-running-p)) (server-start))
 
 ;;; init.el ends here
-(put 'dired-find-alternate-file 'disabled nil)
