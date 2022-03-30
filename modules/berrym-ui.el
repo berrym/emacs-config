@@ -96,14 +96,14 @@ Has no effect if the character before point is not of the syntax class ')'."
   (global-vi-tilde-fringe-mode))
 
 (use-package linum
-  :diminish
-  :init
-  (global-linum-mode))
+  :diminish)
+  ;; :init
+  ;; (global-linum-mode))
 
 (use-package minimap
-  :diminish
-  :init
-  (minimap-mode))
+  :diminish)
+  ;; :init
+  ;; (minimap-mode))
 
 ;; change font, change frame size, load a color theme
 (when (window-system)
@@ -112,13 +112,13 @@ Has no effect if the character before point is not of the syntax class ')'."
 	(progn
 	  (set-frame-font "Fira Code 10")
 	  (message "Using Fira Code font."))
-      (message "Fira Code font not found.  Using default font."))
-    (use-package fira-code-mode
-      :diminish
-      :custom
-      (fira-code-mode-disabled-ligatures '())
-      :hook
-      (prog-mode))
+      (message "Fira Code font not found.  Using default font.")))
+    ;; (use-package fira-code-mode
+    ;;  :diminish
+    ;;  :custom
+    ;;  (fira-code-mode-disabled-ligatures '())
+    ;;  :hook
+    ;;  (prog-mode))
     (use-package spaceline-config
       :diminish
       :hook
@@ -126,7 +126,19 @@ Has no effect if the character before point is not of the syntax class ')'."
        (spaceline-helm-mode)
        (spaceline-info-mode)))
     ;; (set-frame-size (selected-frame) 122 50)
-    (load-theme 'afternoon t))) ;; whiteboard t)))
+    (load-theme 'afternoon t)) ;; whiteboard t)))
+
+(use-package dashboard
+  :diminish
+  :ensure t
+  :config
+  (progn
+    (dashboard-setup-startup-hook)
+    (setq dashboard-items '((recents . 5)
+                            (projects . 15)
+                            (bookmarks . 5)
+                            (agenda . 10))
+          dashboard-projects-backend 'projectile)))
 
 (message "berrym-ui: module loaded successfully.")
 

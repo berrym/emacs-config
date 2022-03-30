@@ -17,6 +17,8 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
+(setq byte-compile-warnings 'nil)
+
 (setq package-user-dir (expand-file-name "packages" user-emacs-directory))
 
 (setq package-selected-packages
@@ -28,6 +30,7 @@
         company
         company-quickhelp
         counsel
+        dashboard
         diminish
         elpy
         expand-region
