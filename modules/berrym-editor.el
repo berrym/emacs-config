@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-editor.el --- Configure Editor Behaviors
 
-;; Copyright (c) 2022 Michael Berry
+;; Copyright (c) 2023 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -12,58 +12,7 @@
 
 ;;; Code:
 
-(defun repeat-last-search-forward ()
-  "Repeat last search forward."
-  (interactive)
-  (search-forward (car search-ring)))
-
-(defun repeat-last-search-backward ()
-  "Repeat last search backward."
-  (interactive)
-  (search-backward (car search-ring)))
-
-(defun backward-kill-line ()
-  "Kill from point to start of line, if beginning of line delete newline."
-  (interactive)
-  (if (bolp)
-      (backward-delete-char 1)
-    (kill-line 0)))
-
-(defun duplicate-line ()
-  "Create a duplicate of current line."
-  (interactive)
-  (save-mark-and-excursion
-    (beginning-of-line)
-    (insert (thing-at-point 'line t))))
-
-(defun transpose-line-down ()
-  "Transpose current line down."
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines 1))
-    (forward-line)
-    (move-to-column col)))
-
-(defun transpose-line-up ()
-  "Transpose current line up."
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines -1))
-    (forward-line -1)
-    (move-to-column col)))
-
-(defun print-elements-in-list (l)
-  "Print each element in a list L."
-  (interactive)
-  (while l
-    (print (car l))
-    (setq l (cdr l))))
-
-;; define a c programming style
+;; Define a C programming style
 (defconst berrym-c-style
   '((c-basic-offset                 . 4)
     (c-tab-always-indent            . t)
@@ -126,23 +75,29 @@
 (setq-default tab-width 4
               indent-tabs-mode nil)
 
-(use-package auto-complete
-  :diminish
+;;; Package configurations
+
+(use-package diminish                   ; Hide most minor-modes from the mode-line
+  :ensure t)
+
+(use-package gnutls                     ; Use encryption always
+  :defer t
+  :custom
+  (gnutls-verify-error t))
+
+(use-package auto-complete              ; Use auto-complete
   :config
   (ac-config-default)
   (setq ac-comphist-file
       (expand-file-name "ac-comphist.dat" save-files-dir)))
 
-(use-package expand-region
-  :diminish
+(use-package expand-region              ; Expand selected regions around point
   :bind
-  (("C-=" . er/expand-region)))
+  ("C-=" . er/expand-region))
 
-;; enhanced menu navigation
-(use-package helm
-  :diminish
+(use-package helm                       ; Enhanced menu navigation
+  :straight t
   :config
-  (require 'helm-config)
   (helm-mode 1)
   (helm-autoresize-mode 1)
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
@@ -157,70 +112,60 @@
         helm-autoresize-max-height 0
         helm-autoresize-min-height 20)
   :bind
-  (("C-c h m"     . 'helm-mini)
-   ("M-x"         . 'helm-M-x)
-   ("C-x C-f"     . 'helm-find-files)
-   ("C-x C-b"     . 'helm-buffers-list)
-   ("C-x b"       . 'helm-buffers-list)
-   ("M-i"         . 'helm-imenu)
-   ("M-y"         . 'helm-show-kill-ring)
-   ("C-c h M-s o" . 'helm-occur)
-   ("C-c h a"     . 'helm-apropos)
-   ([f10]         . 'helm-buffers-list)
-   ([S-M-f10]     . 'helm-recentf)))
+  (("C-c h m"     . helm-mini)
+   ("M-x"         . helm-M-x)
+   ("C-x C-f"     . helm-find-files)
+   ("C-x C-b"     . helm-buffers-list)
+   ("C-x b"       . helm-buffers-list)
+   ("M-i"         . helm-imenu)
+   ("M-y"         . helm-show-kill-ring)
+   ("C-c h M-s o" . helm-occur)
+   ("C-c h a"     . helm-apropos)
+   ([f3]          . helm-buffers-list)
+   ([f2]          . helm-recentf)))
 
-;; NERDTree like file browser
-(use-package treemacs
-  :diminish
+(use-package treemacs                   ; Eclpise like project browser
   :bind
   (("C-c t" . treemacs)
    ("s-a"   . treemacs)))
 
-;; minimap
 (use-package minimap
-  :diminish
-  :config
+  :config                               ; Minimap of en
   (setq minimap-window-location 'right)
   :bind
-  (([f10] . minimap-mode)))
+  ([f10] . minimap-mode))
 
-;; project management
-(use-package projectile
-  :diminish
-  :bind
-  ("C-c p" . projectile-command-map)
+(use-package projectile                 ; Project wide management functions
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p"    . 'projectile-command-map)
+              ("C-c p" . 'projectile-command-map))
   :config
-  (projectile-global-mode)
   (setq projectile-completion-system 'helm
-        projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" save-files-dir)))
+        projectile-known-projects-file (expand-file-name
+                                        "projectile-bookmarks.eld"
+                                        save-files-dir)))
 
-(use-package helm-projectile
-  :diminish
+(use-package helm-projectile            ; Use helm for projectile command completion
   :config
   (helm-projectile-on))
 
-;; cleanup whitespace
-(use-package whitespace-cleanup-mode
-  :diminish
+(use-package whitespace-cleanup-mode    ; Cleanup whitespace
   :hook
   ((after-init       . whitespace-cleanup-mode)
    (before-save-hook . whitespace-cleanup)))
 
-;; undo tree
-(use-package undo-tree
-  :diminish
+(use-package undo-tree                  ; Undo tree
   :hook
   (after-init . undo-tree-mode))
 
-;; show number of search matches
-(use-package anzu
-  :diminish
+(use-package anzu                       ; Show number of search matches
   :hook
   (after-init . anzu-mode))
 
-(use-package company
-  :diminish
+(use-package company                    ; Another completion backend
   :init
   (setq company-idle-delay t
         company-minimum-prefix-length 1
@@ -229,20 +174,19 @@
   (after-init . global-company-mode)
   :config
   (setq company-backends
-        '((company-files          ; files & directory
-           company-keywords       ; keywords
-           company-capf)  ; completion-at-point-functions
+        '((company-files                 ; files & directory
+           company-keywords              ; keywords
+           company-capf)                 ; completion-at-point-functions
           (company-abbrev company-dabbrev)))
   :bind
   ("C-i"   . company-indent-or-complete-common)
   ("C-M-i" . counsel-company))
 
-(use-package company-quickhelp
+(use-package company-quickhelp          ; Company quick help
     :config
     (company-quickhelp-mode))
 
-(use-package lsp-mode
-  :diminish
+(use-package lsp-mode                   ; Language server protocol
   :commands lsp
   :hook
   ((before-save . lsp-format-buffer)
@@ -256,15 +200,13 @@
    ("C-c e i" . lsp-find-implementation)
    ("C-c e t" . lsp-find-type-definition)))
 
-(use-package racer
-  :diminish
+(use-package racer                      ; Another completion backend
   :init
   (setq company-tooltip-align-annotations t)
   :hook
   (racer-mode-hook . company-mode))
 
-(use-package rustic
-  :diminish
+(use-package rustic                     ; Rust programming language mode
   :init
   (setq rustic-lsp-server 'rust-analyzer)
   :hook
@@ -278,53 +220,52 @@
   (setq rustic-lsp-format t)
   (setq rustic-format-on-save t))
 
-
-;; git porcelain
-(use-package magit
-  :diminish
+(use-package magit                      ; Git porcelain
   :bind
   (("C-x g"   . magit-status)
    ("C-x M-g" . magit-dispatch)))
 
-(use-package git-messenger
-  :diminish
+(use-package git-messenger              ; More git helpers
   :bind
-  (("C-x G" . git-messenger:popup-message))
+  ("C-x G" . git-messenger:popup-message)
   :config
   (setq git-messenger:show-detail t
         git-messenger:use-magit-popup t))
 
-;; language modes
-(use-package ruby-mode
-  :diminish
+(use-package ruby-mode                  ; Ruby programming language mode
   :mode "\\.rb\\'"
   :interpreter "ruby")
 
-(use-package elpy
-  :diminish
+(use-package elpy                       ; Python programming language mode
   :init
   (elpy-enable))
 
-(use-package blacken
-  :diminish
+(use-package blacken                    ; Auto format Python files
   :hook (python-mode . blacken-mode)
   :config
   (setq blacken-line-length '79))
 
-(use-package python-docstring
+(use-package python-docstring           ; Python mode docstring handler
   :diminish
   :hook (python-mode . python-docstring-mode))
 
-(use-package vterm
-  :diminish)
-
-(use-package haskell-mode
-  :diminish
+(use-package haskell-mode               ; Haskell programming language mode
   :init
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode))
 
-(setq inferior-lisp-program "ros -Q run")
+(require 'slime)
+(use-package slime                      ; Superior Lisp Interaction Mode for Emacs
+  :init
+  (load "~/.roswell/helper.el")
+  (setq inferior-lisp-program "ros -Q run")
+  :config
+  (slime-setup '(helm-slime))
+  (global-helm-slime-mode))
+               
+(use-package vterm                      ; Virtual terminal emulater
+  :bind
+  ([f1] . vterm))
 
 (message "berrym-editor: module loaded successfully.")
 
