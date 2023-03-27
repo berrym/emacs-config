@@ -97,6 +97,7 @@
 
 (use-package helm                       ; Enhanced menu navigation
   :straight t
+  :diminish
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -130,13 +131,14 @@
    ("s-a"   . treemacs)))
 
 (use-package minimap
-  :config                               ; Minimap of en
+  :config                               ; Minimap of buffer
   (setq minimap-window-location 'right)
   :bind
   ([f10] . minimap-mode))
 
 (use-package projectile                 ; Project wide management functions
   :ensure t
+  :diminish
   :init
   (projectile-mode +1)
   :bind (:map projectile-mode-map
@@ -149,6 +151,7 @@
                                         save-files-dir)))
 
 (use-package helm-projectile            ; Use helm for projectile command completion
+  :diminish
   :config
   (helm-projectile-on))
 
