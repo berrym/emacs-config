@@ -48,6 +48,7 @@
         highlight-parentheses
         lsp-mode
         magit
+        magit-stats
         meson-mode
         minimap
         on

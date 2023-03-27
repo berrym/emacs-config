@@ -225,6 +225,10 @@
   (("C-x g"   . magit-status)
    ("C-x M-g" . magit-dispatch)))
 
+(use-package magit-stats
+  :bind
+  ("C-x M-s" . magit-stats))
+
 (use-package git-messenger              ; More git helpers
   :bind
   ("C-x G" . git-messenger:popup-message)
