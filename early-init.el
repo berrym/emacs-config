@@ -21,7 +21,9 @@
 
 (setq frame-inhibit-implied-resize t)
 
-(setq comp-deferred-compilation nil)
+(setq native-comp-deferred-compilation nil)
+
+(setq comp-enable-subr-trampolines nil)
 
 (setq inhibit-compacting-font-caches t)
 
