@@ -12,64 +12,6 @@
 
 ;;; Code:
 
-;; (require 'package)
-
-;; (add-to-list 'package-archives
-;;              '("melpa" . "https://melpa.org/packages/"))
-
-;; (setq package-user-dir (expand-file-name "packages" user-emacs-directory))
-
-;; (setq package-selected-packages
-;;       '(all-the-icons
-;;         all-the-icons-dired
-;;         all-the-icons-fonts
-;;         anzu
-;;         auto-complete
-;;         benchmark-init
-;;         blacken
-;;         cargo
-;;         company
-;;         company-quickhelp
-;;         counsel
-;;         dashboard
-;;         diminish
-;;         doom-themes
-;;         elpy
-;;         expand-region
-;;         fira-code-mode
-;;         fontaine
-;;         gcmh
-;;         git-messenger
-;;         haskell-mode
-;;         helm
-;;         helm-ag
-;;         helm-projectile
-;;         helm-slime
-;;         highlight-parentheses
-;;         lsp-mode
-;;         magit
-;;         magit-stats
-;;         meson-mode
-;;         minimap
-;;         on
-;;         powerline
-;;         projectile
-;;         python-docstring
-;;         rustic
-;;         slime
-;;         treemacs
-;;         undo-tree
-;;         vi-tilde-fringe
-;;         vterm
-;;         volatile-highlights
-;;         whitespace-cleanup-mode))
-
-;; (package-initialize)
-
-;; (package-install-selected-packages)
-
-;; (setq use-package-compute-statistics t)
-
 ;; Setup straight
 (defvar bootstrap-version)
 
