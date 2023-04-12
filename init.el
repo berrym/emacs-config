@@ -10,9 +10,6 @@
 
 ;; License: GPLv3
 
-;; Without this comment emacs25 adds (package-initialize) here
-;; (package-initialize)
-
 ;;; Code:
 
 (when (version< emacs-version "29.0")

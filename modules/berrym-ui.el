@@ -107,6 +107,8 @@ Has no effect if the character before point is not of the syntax class ')'."
 (setq use-dialog-box 0)
 
 (use-package volatile-highlights
+  :straight t
+  :diminish
   :hook
   (after-init . volatile-highlights-mode))
 
@@ -120,21 +122,26 @@ Has no effect if the character before point is not of the syntax class ')'."
   (initial-major-mode 'fundamental-mode))
 
 (use-package vi-tilde-fringe
+  :straight t
+  :diminish
   :init
   (global-vi-tilde-fringe-mode))
 
 (use-package linum
+  :diminish
   :bind
   ("<f5>" . linum-mode))
 
 (use-package minimap
+  :straight t
+  :diminish
   :bind
   ("<f6>" . minimap-mode))
 
 (when (window-system)                   ; Change font, and use a dashboard when using window system
   (use-package fontaine
-    :ensure t
-    :demand t
+    :straight t
+    :diminish
     :custom
     (fontaine-presets
      `((regular
@@ -154,7 +161,8 @@ Has no effect if the character before point is not of the syntax class ')'."
   (fontaine-set-preset (or fontaine-current-preset 'regular)))
 
   (use-package dashboard
-    :ensure t
+    :straight t
+    :diminish
     :config
     (dashboard-setup-startup-hook)
     (setq dashboard-items '((recents . 5)
@@ -169,7 +177,7 @@ Has no effect if the character before point is not of the syntax class ')'."
           dashboard-projects-backend 'projectile)))
 
 (use-package doom-themes
-  :ensure t
+  :straight t
   :config
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
@@ -186,8 +194,9 @@ Has no effect if the character before point is not of the syntax class ')'."
   (doom-themes-org-config))
 
 (use-package powerline
+  :straight t
+  :diminish
   :config
-  (require 'powerline)
   (powerline-default-theme))
 
 (message "berrym-ui: module loaded successfully.")
