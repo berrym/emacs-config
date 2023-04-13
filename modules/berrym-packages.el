@@ -37,19 +37,19 @@
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
 ;; Hide most minor-modes from the mode-line
-(use-package diminish
+(use-package delight
   :straight t)
 
 (use-package benchmark-init
   :straight t
-  :diminish t
+  :delight
   :hook (after-init . benchmark-init/deactivate)
   :config
   (benchmark-init/activate))
 
 (use-package gcmh
   :straight t
-  :diminish t
+  :delight
   :hook (emacs-startup . gcmh-mode))
 
 ;; Use encryption always
@@ -61,7 +61,7 @@
 ;; Use all-the-icons
 (use-package all-the-icons
   :straight t
-  :diminish t
+  :delight
   :if (display-graphic-p))
 
 (use-package all-the-icons-dired
@@ -70,7 +70,7 @@
 ;; Use auto-complete
 (use-package auto-complete
   :straight t
-  :diminish t
+  :delight
   :config
   (ac-config-default)
   (setq ac-comphist-file
@@ -79,19 +79,19 @@
 ;; Use counsel
 (use-package counsel
   :straight t
-  :diminish t)
+  :delight)
 
 ;; Expand selected regions around point
 (use-package expand-region
   :straight t
-  :diminish t
+  :delight
   :bind
   ("C-=" . er/expand-region))
 
 ;; Enhanced menu navigation
 (use-package helm
   :straight t
-  :diminish t
+  :delight
   :config
   (helm-mode 1)
   (helm-autoresize-mode 1)
@@ -122,12 +122,12 @@
 ;; Use helm-ag
 (use-package helm-ag
   :straight t
-  :diminish t)
+  :delight)
 
 ;; Project wide management functions
 (use-package projectile
   :straight t
-  :diminish t
+  :delight
   :init
   (projectile-mode +1)
   :bind (:map projectile-mode-map
@@ -142,19 +142,19 @@
 ;; Use helm for projectile command completion
 (use-package helm-projectile
   :straight t
-  :diminish t
+  :delight
   :config
   (helm-projectile-on))
 
 ;; Use helm with slime
 (use-package helm-slime
   :straight t
-  :diminish t)
+  :delight)
 
 ;; Superior Lisp Interaction Mode for Emacs
 (use-package slime
   :straight t
-  :diminish t
+  :delight
   :init
   (load "~/.roswell/helper.el")
   (setq inferior-lisp-program "ros -Q run")
@@ -165,17 +165,17 @@
 ;; Use parentheses highlights
 (use-package highlight-parentheses
   :straight t
-  :diminish t)
+  :delight)
 
 ;; Mode for editing meson build files
 (use-package meson-mode
   :straight t
-  :diminish t)
+  :delight)
 
 ;; Eclpise like project browser
 (use-package treemacs
   :straight t
-  :diminish t
+  :delight
   :bind
   (("C-c t" . treemacs)
    ("s-a"   . treemacs)))
@@ -183,7 +183,7 @@
 ;; use minimap of buffer
 (use-package minimap
   :straight t
-  :diminish t
+  :delight
   :config
   (setq minimap-window-location 'right)
   :bind
@@ -192,28 +192,28 @@
 ;; Cleanup whitespace automatically on save
 (use-package whitespace-cleanup-mode
   :straight t
-  :diminish t
+  :delight
   :config
   (global-whitespace-cleanup-mode t))
 
 ;; Undo tree instead of default ring
 (use-package undo-tree
   :straight t
-  :diminish t
+  :delight
   :hook
   (after-init . undo-tree-mode))
 
 ;; Show number of search matches
 (use-package anzu
   :straight t
-  :diminish t
+  :delight
   :hook
   (after-init . anzu-mode))
 
 ;; Another completion backend
 (use-package company
   :straight t
-  :diminish t
+  :delight
   :init
   (setq company-idle-delay t
         company-minimum-prefix-length 1
@@ -233,14 +233,14 @@
 ;; Company quick help
 (use-package company-quickhelp
   :straight t
-  :diminish t
+  :delight
   :config
   (company-quickhelp-mode))
 
 ;; Use the Language Server Protocol
 (use-package lsp-mode
   :straight t
-  :diminish t
+  :delight
   :commands lsp
   :hook
   ((before-save . lsp-format-buffer)
@@ -257,7 +257,7 @@
 ;; Another completion backend
 (use-package racer
   :straight t
-  :diminish t
+  :delight
   :init
   (setq company-tooltip-align-annotations t)
   :hook
@@ -266,7 +266,7 @@
 ;; Rust programming language mode
 (use-package rustic
   :straight t
-  :diminish t
+  :delight
   :init
   (setq rustic-lsp-server 'rust-analyzer)
   :config
@@ -287,7 +287,7 @@
 ;; Git porcelain
 (use-package magit
   :straight t
-  :diminish t
+  :delight
   :bind
   (("C-x g"   . magit-status)
    ("C-x M-g" . magit-dispatch)))
@@ -301,7 +301,7 @@
 ;; More git helpers
 (use-package git-messenger
   :straight t
-  :diminish t
+  :delight
   :bind
   ("C-x G" . git-messenger:popup-message)
   :config
@@ -311,21 +311,21 @@
 ;; Ruby programming language mode
 (use-package ruby-mode
   :straight t
-  :diminish t
+  :delight
   :mode "\\.rb\\'"
   :interpreter "ruby")
 
 ;; Python programming language mode
 (use-package elpy
   :straight t
-  :diminish t
+  :delight
   :init
   (elpy-enable))
 
 ;; Auto format Python files
 (use-package blacken
   :straight t
-  :diminish t
+  :delight
   :hook (python-mode . blacken-mode)
   :config
   (setq blacken-line-length '79))
@@ -333,13 +333,13 @@
 ;; Python mode docstring handler
 (use-package python-docstring
   :straight t
-  :diminish t
+  :delight
   :hook (python-mode . python-docstring-mode))
 
 ;; Haskell programming language mode
 (use-package haskell-mode
   :straight t
-  :diminish t
+  :delight
   :init
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode))
@@ -347,7 +347,7 @@
 ;; Virtual terminal emulater
 (use-package vterm
   :straight t
-  :diminish t
+  :delight
   :bind
   ([f1] . vterm))
 

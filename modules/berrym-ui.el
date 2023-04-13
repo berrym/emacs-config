@@ -108,7 +108,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (use-package volatile-highlights
   :straight t
-  :diminish
+  :delight
   :hook
   (after-init . volatile-highlights-mode))
 
@@ -123,25 +123,25 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (use-package vi-tilde-fringe
   :straight t
-  :diminish
+  :delight
   :init
   (global-vi-tilde-fringe-mode))
 
 (use-package linum
-  :diminish
+  :delight
   :bind
   ("<f5>" . linum-mode))
 
 (use-package minimap
   :straight t
-  :diminish
+  :delight
   :bind
   ("<f6>" . minimap-mode))
 
 (when (window-system)                   ; Change font, and use a dashboard when using window system
   (use-package fontaine
     :straight t
-    :diminish
+    :delight
     :custom
     (fontaine-presets
      `((regular
@@ -162,7 +162,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
   (use-package dashboard
     :straight t
-    :diminish
+    :delight
     :config
     (dashboard-setup-startup-hook)
     (setq dashboard-items '((recents . 5)
@@ -195,7 +195,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (use-package powerline
   :straight t
-  :diminish
+  :delight
   :config
   (powerline-default-theme))
 
