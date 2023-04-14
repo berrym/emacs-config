@@ -106,12 +106,6 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (setq use-dialog-box 0)
 
-(use-package volatile-highlights
-  :straight t
-  :delight
-  :hook
-  (after-init . volatile-highlights-mode))
-
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -121,19 +115,28 @@ Has no effect if the character before point is not of the syntax class ')'."
   (inhibit-startup-screen t)
   (initial-major-mode 'fundamental-mode))
 
-(use-package vi-tilde-fringe
-  :straight t
-  :delight
-  :init
-  (global-vi-tilde-fringe-mode))
-
 (use-package linum
   :delight
   :bind
   ("<f5>" . linum-mode))
 
+(use-package volatile-highlights
+  :straight t
+  :ensure t
+  :delight
+  :hook
+  (after-init . volatile-highlights-mode))
+
+(use-package vi-tilde-fringe
+  :straight t
+  :ensure t
+  :delight
+  :init
+  (global-vi-tilde-fringe-mode))
+
 (use-package minimap
   :straight t
+  :ensure t
   :delight
   :bind
   ("<f6>" . minimap-mode))
@@ -141,6 +144,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 (when (window-system)                   ; Change font, and use a dashboard when using window system
   (use-package fontaine
     :straight t
+    :ensure t
     :delight
     :custom
     (fontaine-presets
@@ -162,6 +166,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
   (use-package dashboard
     :straight t
+    :ensure t
     :delight
     :config
     (dashboard-setup-startup-hook)
@@ -178,6 +183,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (use-package doom-themes
   :straight t
+  :ensure t
   :config
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
@@ -195,6 +201,7 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (use-package powerline
   :straight t
+  :ensure t
   :delight
   :config
   (powerline-default-theme))
