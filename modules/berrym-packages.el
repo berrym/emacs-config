@@ -40,6 +40,21 @@
 (use-package delight
   :straight t)
 
+;; Automatically update packages
+(use-package auto-package-update
+  :straight t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
+;; Auto revert buffers
+(use-package autorevert
+  :straight t
+  :delight auto-revert-mode
+  :config (global-auto-revert-mode t))
+
+;; Benchmark init
 (use-package benchmark-init
   :straight t
   :delight
@@ -64,6 +79,7 @@
   :delight
   :if (display-graphic-p))
 
+;; Use all-the-icons in dired mode
 (use-package all-the-icons-dired
   :straight t)
 
@@ -127,7 +143,7 @@
 ;; Project wide management functions
 (use-package projectile
   :straight t
-  :delight
+  :delight '(:eval (concat " " (projectile-project-name))) ; only show project name
   :init
   (projectile-mode +1)
   :bind (:map projectile-mode-map

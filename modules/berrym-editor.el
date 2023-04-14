@@ -69,9 +69,6 @@
 (add-hook 'c-mode-common-hook (lambda () (c-set-style "berrym")))
 (add-hook 'c-mode-common-hook (lambda () (c-toggle-comment-style -1))) ; use c++ style comments
 
-;; reload files automatically if externally modified
-(global-auto-revert-mode t)
-
 ;; tabs are 4 spaces
 (setq-default tab-width 4
               indent-tabs-mode nil)
