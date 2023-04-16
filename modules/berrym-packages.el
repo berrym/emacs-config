@@ -37,6 +37,15 @@
   :custom
   (gnutls-verify-error t))
 
+;; Automatically update pacakges
+(use-package auto-package-update
+  :straight t
+  :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
 ;; Need to set this up to use :bind in use-package
 (use-package bind-key
   :straight t
