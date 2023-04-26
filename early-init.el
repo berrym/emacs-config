@@ -21,6 +21,14 @@
 
 (setq frame-inhibit-implied-resize t)
 
+(setq no-littering-etc-directory "~/.cache/emacs/etc/"
+      no-littering-var-directory "~/.cache/emacs/var/")
+
+(when (boundp 'startup-redirect-eln-cache)
+  (startup-redirect-eln-cache
+   (convert-standard-filename
+    (expand-file-name  "eln-cache/" no-littering-var-directory))))
+
 (setq native-comp-deferred-compilation nil)
 
 (setq comp-enable-subr-trampolines nil)

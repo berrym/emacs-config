@@ -46,6 +46,11 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
+;; Clean up the native compilation cache
+(use-package no-littering
+  :straight t
+  :ensure t)
+
 ;; Need to set this up to use :bind in use-package
 (use-package bind-key
   :straight t
