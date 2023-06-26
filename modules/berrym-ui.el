@@ -54,7 +54,7 @@ Has no effect if the character before point is not of the syntax class ')'."
   :config
   ;; Configure tab-bar-mode
   (set-face-attribute 'tab-bar nil
-                      :inherit 'mode-line)
+                      :foreground "gray60")
   (set-face-attribute 'tab-bar-tab nil
                       :inherit 'mode-line)
   (set-face-attribute 'tab-bar-tab-inactive nil
