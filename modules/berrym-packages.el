@@ -176,7 +176,7 @@
   :init
   (projectile-mode +1)
   :bind (:map projectile-mode-map
-              ("s-p"    . 'projectile-command-map)
+              ("s-p"   . 'projectile-command-map)
               ("C-c p" . 'projectile-command-map))
   :config
   (setq projectile-completion-system 'helm
@@ -276,12 +276,17 @@
         company-tooltip-align-annotations t)
   :hook
   (after-init . global-company-mode)
+  (text-mode  . company-mode)
+  (prog-mode  . company-mode)
+
   :config
   (setq company-backends
         '((company-files                 ; files & directory
            company-keywords              ; keywords
            company-capf)                 ; completion-at-point-functions
-          (company-abbrev company-dabbrev)))
+          (company-abbrev company-dabbrev)
+          company-dabbrev-other-buffers t
+          company-dabbrev-code-other-buffers t))
   :bind
   ("C-i"   . company-indent-or-complete-common)
   ("C-M-i" . counsel-company))
@@ -299,10 +304,12 @@
   :straight t
   :ensure t
   :delight
-  :commands lsp
+  :commands (lsp lsp-deferred)
+  :init (setq lsp-keymap-prefix "C-c l")
   :hook
   ((before-save . lsp-format-buffer)
-   (before-save . lsp-organize-imports))
+   (before-save . lsp-organize-imports)
+   (python-mode . lsp-deferred))
   :bind
   (("C-c d"   . lsp-describe-thing-at-point)
    ("C-c e n" . flymake-goto-next-error)
@@ -311,6 +318,28 @@
    ("C-c e R" . lsp-rename)
    ("C-c e i" . lsp-find-implementation)
    ("C-c e t" . lsp-find-type-definition)))
+
+;; Provides visual help in the buffer
+(use-package lsp-ui
+  :straight t
+  :ensure t
+  :defer t
+  :config
+  (setq lsp-ui-sideline-enable nil
+        lsp-ui-doc-delay 2)
+  :hook (lsp-mode . lsp-ui-mode)
+  :bind (:map lsp-ui-mode-map
+          ("C-c i" . lsp-ui-imenu)))
+
+;; Integration with the debug server
+(use-package dap-mode
+  :straight t
+  :ensure t
+  :defer t
+  :delight
+  :after lsp-mode
+  :config
+  (dap-auto-configure-mode))
 
 ;; Another completion backend
 (use-package racer
@@ -386,7 +415,7 @@
   :init
   (elpy-enable))
 
-;; Auto format Python files
+;; Auto format Python files using the uncompromising formatter
 (use-package blacken
   :straight t
   :ensure t
@@ -394,6 +423,61 @@
   :hook (python-mode . blacken-mode)
   :config
   (setq blacken-line-length '79))
+
+;; Language server for Python
+(use-package lsp-pyright
+  :straight t
+  :ensure t
+  :defer t
+  :config
+  (setq lsp-pyright-disable-language-service nil
+    lsp-pyright-disable-organize-imports nil
+    lsp-pyright-auto-import-completions t
+    lsp-pyright-use-library-code-for-types t)
+  :hook ((python-mode . (lambda ()
+                          (require 'lsp-pyright) (lsp-deferred)))))
+
+;; Built-in Python utilities
+(use-package python
+  :ensure t
+  :config
+  ;; Remove guess indent python message
+  (setq python-indent-guess-indent-offset-verbose nil)
+  ;; Use IPython when available or fall back to regular Python
+  (cond
+   ((executable-find "ipython")
+    (progn
+      (setq python-shell-buffer-name "IPython")
+      (setq python-shell-interpreter "ipython")
+      (setq python-shell-interpreter-args "-i --simple-prompt")))
+   ((executable-find "python3")
+    (setq python-shell-interpreter "python3"))
+   ((executable-find "python2")
+    (setq python-shell-interpreter "python2"))
+   (t
+    (setq python-shell-interpreter "python"))))
+
+;; Use pydoc
+(use-package pydoc
+  :straight t
+  :ensure t)
+
+;; Helm navigation of pydoc
+(use-package helm-pydoc
+  :straight t
+  :ensure t)
+
+;; Required to easily switch virtual envs
+(use-package pyvenv
+  :straight t
+  :ensure t
+  :config
+  ;; Display virtual envs in the menu bar
+  (setq pyvenv-menu t)
+  ;; Restart the python process when switching environments
+  (add-hook 'pyvenv-post-activate-hooks (lambda ()
+                                          (pyvenv-restart-python)))
+  :hook (python-mode . pyvenv-mode))
 
 ;; Python mode docstring handler
 (use-package python-docstring
