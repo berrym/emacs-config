@@ -12,8 +12,8 @@
 
 ;;; Code:
 
-(when (version< emacs-version "29.0")
-  (error "This configuration only works with GNU Emacs >= 29.0"))
+(when (version< emacs-version "28.0")
+  (error "This configuration only works with GNU Emacs >= 28.0"))
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
