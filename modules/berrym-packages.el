@@ -231,6 +231,18 @@
   (("C-c t" . treemacs)
    ("s-a"   . treemacs)))
 
+;; Projectile support for treemacs
+(use-package treemacs-projectile
+  :straight t
+  :ensure t)
+
+;; imenu
+(use-package imenu
+  :straight t
+  :ensure t
+  :bind
+  ("C-x i" . imenu))
+
 ;; use minimap of buffer
 (use-package minimap
   :straight t
@@ -304,11 +316,12 @@
   :straight t
   :ensure t
   :delight
-  :commands (lsp lsp-deferred)
-  :init (setq lsp-keymap-prefix "C-c l")
+  :commands
+  (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
   :hook
-  ((before-save . lsp-format-buffer)
-   (before-save . lsp-organize-imports)
+  ((before-save . lsp-organize-imports)
    (python-mode . lsp-deferred))
   :bind
   (("C-c d"   . lsp-describe-thing-at-point)
@@ -330,6 +343,18 @@
   :hook (lsp-mode . lsp-ui-mode)
   :bind (:map lsp-ui-mode-map
           ("C-c i" . lsp-ui-imenu)))
+
+;; Helm integration with lsp
+(use-package helm-lsp
+  :straight t
+  :ensure t
+  :config
+  (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
+
+;; lsp integration with treemacs
+(use-package lsp-treemacs
+  :straight t
+  :ensure t)
 
 ;; Integration with the debug server
 (use-package dap-mode
