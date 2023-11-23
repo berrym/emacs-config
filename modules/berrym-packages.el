@@ -63,14 +63,12 @@
   :straight t
   :ensure t)
 
-;; Automatically update packages
-(use-package auto-package-update
+;; Which-key mode
+(use-package which-key
   :straight t
   :ensure t
   :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe))
+  (which-key-mode))
 
 ;; Auto revert buffers
 (use-package autorevert
@@ -204,10 +202,12 @@
   :ensure t
   :delight
   :init
-  (load "~/.roswell/helper.el")
-  (setq inferior-lisp-program "ros -Q run")
+  (setq inferior-lisp-program "sbcl")
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
   :config
-  (slime-setup '(helm-slime))
+  (slime-setup '(helm-slime slime-fancy slime-quicklisp slime-asdf slime-banner))
+  (setq slime-complete-symbol*-fancy t)
+  (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
   (global-helm-slime-mode))
 
 ;; Use parentheses highlights
@@ -393,6 +393,7 @@
                            (company-dabbrev-code company-dabbrev))))))
   :custom
   (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer"))
+  (rustic-rustfmt-config-alist '((edition . "2021")))
   :config
   (setq rust-indent-method-chain t)
   (setq rustic-lsp-format t)
