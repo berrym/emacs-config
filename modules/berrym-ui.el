@@ -115,6 +115,12 @@ Has no effect if the character before point is not of the syntax class ')'."
   (inhibit-startup-screen t)
   (initial-major-mode 'fundamental-mode))
 
+(use-package unicode-fonts
+  :straight t
+  :ensure t
+  :config
+  (unicode-fonts-setup))
+
 (use-package linum
   :delight
   :bind
@@ -396,7 +402,7 @@ Has no effect if the character before point is not of the syntax class ')'."
     :config
     (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
           doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    (load-theme 'doom-solarized-dark t)
+    (load-theme 'doom-Iosvkem t)
 
     ;; Enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
