@@ -376,8 +376,9 @@ Has no effect if the character before point is not of the syntax class ')'."
     :straight t
     :ensure t
     :delight
-    :config
+    :init
     (dashboard-setup-startup-hook)
+    :config
     (setq dashboard-items '((recents . 5)
                             (projects . 15))
                             ;; (bookmarks . 5)
@@ -387,6 +388,12 @@ Has no effect if the character before point is not of the syntax class ')'."
           dashboard-set-navigator t
           dashboard-center-content t
           dashboard-set-heading-icons t
+          dashboard-heading-icons '((recents   . "history")
+                                    (bookmarks . "bookmark")
+                                    (agenda    . "calendar")
+                                    (projects  . "rocket")
+                                    (registers . "database"))
+          dashboard-icon-type 'all-the-icons
           dashboard-set-file-icons t
           dashboard-projects-backend 'projectile))
 
