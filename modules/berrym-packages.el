@@ -231,6 +231,16 @@
   (("C-c t" . treemacs)
    ("s-a"   . treemacs)))
 
+;; NERDTree like file browser
+(use-package neotree
+  :straight t
+  :ensure t
+  :delight
+  :bind
+  ("<f8>" . neotree)
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+
 ;; Projectile support for treemacs
 (use-package treemacs-projectile
   :straight t
@@ -276,6 +286,11 @@
   :delight
   :hook
   (after-init . anzu-mode))
+
+;; Use org mode
+(use-package org
+  :straight t
+  :ensure t)
 
 ;; Another completion backend
 (use-package company

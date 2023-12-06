@@ -382,8 +382,8 @@ Has no effect if the character before point is not of the syntax class ')'."
     (setq dashboard-items '((recents . 5)
                             (projects . 15))
                             ;; (bookmarks . 5)
-          ;; (agenda . 10))
-          dashboard-banner-logo-title "Welcome to Lusus Naturae's Emacs"
+                            ;; (agenda . 10))
+          dashboard-banner-logo-title "Welcome to Lusus Naturae's Emacs\nHere be Dragons!"
           dashboard-startup-banner (expand-file-name "images/ancient_mage.gif" user-emacs-directory) ;;'logo
           dashboard-set-navigator t
           dashboard-center-content t
