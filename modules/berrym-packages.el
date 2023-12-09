@@ -290,7 +290,9 @@
 ;; Use org mode
 (use-package org
   :straight t
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE"))))
 
 ;; Another completion backend
 (use-package company
