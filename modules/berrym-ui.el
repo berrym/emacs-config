@@ -115,12 +115,6 @@ Has no effect if the character before point is not of the syntax class ')'."
   (inhibit-startup-screen t)
   (initial-major-mode 'fundamental-mode))
 
-(use-package unicode-fonts
-  :straight t
-  :ensure t
-  :config
-  (unicode-fonts-setup))
-
 (use-package linum
   :delight
   :bind
