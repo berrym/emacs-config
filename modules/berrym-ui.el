@@ -353,15 +353,15 @@ Has no effect if the character before point is not of the syntax class ')'."
      `((regular
         :default-weight semilight
         :default-height 110
-        :variable-pitch-family "Sans"
+        :variable-pitch-family "JetBrainsMono Nerd Font"
         :bold-weight extrabold)
        (presentation
         :default-height 160)
        (t ;; defaults
         :default-family
         ,(cond
-          ((find-font (font-spec :name "Fira Code"))
-           "Fira Code Retina")
+          ((find-font (font-spec :name "JetBrainsMono Nerd Font"))
+           "Regular")
           ("Monospace")))))
   :config
   (fontaine-set-preset (or fontaine-current-preset 'regular)))
