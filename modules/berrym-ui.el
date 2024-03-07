@@ -351,16 +351,16 @@ Has no effect if the character before point is not of the syntax class ')'."
     :custom
     (fontaine-presets
      `((regular
-        :default-weight semilight
+        :default-weight regular
         :default-height 110
         :variable-pitch-family "JetBrainsMono Nerd Font"
-        :bold-weight extrabold)
+        :bold-weight bold)
        (presentation
         :default-height 160)
        (t ;; defaults
         :default-family
         ,(cond
-          ((find-font (font-spec :name "JetBrainsMono Nerd Font"))
+          ((find-font (font-spec :name "JetBrainsMono Mono Nerd Font"))
            "Regular")
           ("Monospace")))))
   :config

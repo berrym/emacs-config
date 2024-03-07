@@ -30,6 +30,8 @@
 
 ;; Prefer using straight.el use-package over package.el version
 (straight-use-package 'use-package)
+(setq straight-vc-git-default-clone-depth '(1 single-branch))  ;; instead of the default 'full
+(setq use-package-verbose nil) ;; use 't' to see execution profile at startup
 
 ;; Use encryption always
 (use-package gnutls
