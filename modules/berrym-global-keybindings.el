@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-global-keybindings.el --- Global keyboard shortcuts.
 
-;; Copyright (c) 2023 Michael Berry
+;; Copyright (c) 2024 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -12,7 +12,7 @@
 
 (global-set-key (kbd "M-s")   #'repeat-last-search-forward)
 (global-set-key (kbd "M-r")   #'repeat-last-search-backward)
-(global-set-key (kbd "C-S-k") #'backward-kill-line)
+(global-set-key (kbd "C-M-k") #'backward-kill-line)
 (global-set-key (kbd "C-S-d") #'duplicate-line)
 (global-set-key (kbd "C-S-j") #'transpose-line-down)
 (global-set-key (kbd "C-S-k") #'transpose-line-up)

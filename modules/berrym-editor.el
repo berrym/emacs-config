@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-editor.el --- Configure Editor Behaviors
 
-;; Copyright (c) 2023 Michael Berry
+;; Copyright (c) 2024 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config

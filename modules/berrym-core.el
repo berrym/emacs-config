@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-core.el --- Basic settings for GNU Emacs
 
-;; Copyright (c) 2023 Michael Berry
+;; Copyright (c) 2024 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -32,7 +32,7 @@
 (put 'dired-find-file-other-buffer 'disabled t)
 
 (savehist-mode t)
-(setq history-length 500)
+(setq history-length 10000)
 
 (message "berrym-core: module loaded successfully.")
 

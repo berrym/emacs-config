@@ -1,7 +1,7 @@
 ;;; Commentary:
 ;;;berrym-misc-funcs.el --- Miscellaneous functions
 
-;; Copyright (c) 2023 Michael Berry
+;; Copyright (c) 2024 Michael Berry
 
 ;; Author: Michael Berry <trismegustis@gmail.com>
 ;; URL: https://github.com/berrym/emacs-config
@@ -65,7 +65,9 @@
 
 (defun font-exists-p (font)
   "Check if a FONT exists.  Return T if found NIL if not."
-  (if (null (x-list-fonts font)) nil t))
+  (if (null (x-list-fonts font))
+      nil
+    t))
 
 (message "berrym-misc-funcs loaded successfully")
 
