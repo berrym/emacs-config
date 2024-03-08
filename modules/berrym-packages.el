@@ -32,17 +32,17 @@
 (straight-use-package 'use-package)
 (setq straight-vc-git-default-clone-depth '(1 single-branch))  ;; instead of the default 'full
 (setq use-package-verbose nil) ;; use 't' to see execution profile at startup
+(setq use-package-always-defer t)
 
 ;; Use encryption always
 (use-package gnutls
-  :defer t
   :custom
   (gnutls-verify-error t))
 
 ;; Automatically update pacakges
 (use-package auto-package-update
   :straight t
-  :ensure t
+  :demand t
   :config
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
@@ -51,38 +51,38 @@
 ;; Clean up the native compilation cache
 (use-package no-littering
   :straight t
-  :ensure t)
+  :demand t)
 
 ;; Need to set this up to use :bind in use-package
 (use-package bind-key
   :straight t
-  :ensure t
+  :demand t
   :config
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
 ;; Hide most minor-modes from the mode-line
 (use-package delight
   :straight t
-  :ensure t)
+  )
 
 ;; Which-key mode
 (use-package which-key
   :straight t
-  :ensure t
+  :demand t
   :config
   (which-key-mode))
 
 ;; Auto revert buffers
 (use-package autorevert
   :straight t
-  :ensure t
+  :demand t
   :delight auto-revert-mode
   :config (global-auto-revert-mode t))
 
 ;; Benchmark init
 (use-package benchmark-init
   :straight t
-  :ensure t
+  :demand t
   :delight
   :hook (after-init . benchmark-init/deactivate)
   :config
@@ -91,26 +91,25 @@
 ;; Garbage Collector Magic Hack
 (use-package gcmh
   :straight t
-  :ensure t
+  :demand t
   :delight
   :hook (emacs-startup . gcmh-mode))
 
 ;; Use all-the-icons
 (use-package all-the-icons
   :straight t
-  :ensure t
+  :demand t
   :delight
   :if (display-graphic-p))
 
 ;; Use all-the-icons in dired mode
 (use-package all-the-icons-dired
   :straight t
-  :ensure t)
+  :demand t)
 
 ;; Use auto-complete
 (use-package auto-complete
   :straight t
-  :ensure t
   :delight
   :config
   (ac-config-default)
@@ -125,7 +124,6 @@
 ;; Expand selected regions around point
 (use-package expand-region
   :straight t
-  :ensure t
   :delight
   :bind
   ("C-=" . er/expand-region))
@@ -133,7 +131,6 @@
 ;; Enhanced menu navigation
 (use-package helm
   :straight t
-  :ensure t
   :delight
   :config
   (helm-mode 1)
@@ -165,13 +162,11 @@
 ;; Use helm-ag
 (use-package helm-ag
   :straight t
-  :ensure t
   :delight)
 
 ;; Project wide management functions
 (use-package projectile
   :straight t
-  :ensure t
   :delight '(:eval (concat " " (projectile-project-name))) ; only show project name
   :init
   (projectile-mode +1)
@@ -187,7 +182,6 @@
 ;; Use helm for projectile command completion
 (use-package helm-projectile
   :straight t
-  :ensure t
   :delight
   :config
   (helm-projectile-on))
@@ -195,13 +189,11 @@
 ;; Use helm with slime
 (use-package helm-slime
   :straight t
-  :ensure t
   :delight)
 
 ;; Superior Lisp Interaction Mode for Emacs
 (use-package slime
   :straight t
-  :ensure t
   :delight
   :init
   (setq inferior-lisp-program "sbcl")
@@ -215,19 +207,17 @@
 ;; Use parentheses highlights
 (use-package highlight-parentheses
   :straight t
-  :ensure t
+  :demand t
   :delight)
 
 ;; Mode for editing meson build files
 (use-package meson-mode
   :straight t
-  :ensure t
   :delight)
 
 ;; Eclpise like project browser
 (use-package treemacs
   :straight t
-  :ensure t
   :delight
   :bind
   (("C-c t" . treemacs)
@@ -236,7 +226,6 @@
 ;; NERDTree like file browser
 (use-package neotree
   :straight t
-  :ensure t
   :delight
   :bind
   ("<f8>" . neotree)
@@ -245,20 +234,18 @@
 
 ;; Projectile support for treemacs
 (use-package treemacs-projectile
-  :straight t
-  :ensure t)
+  :straight t)
 
 ;; imenu
 (use-package imenu
   :straight t
-  :ensure t
   :bind
   ("C-x i" . imenu))
 
 ;; use minimap of buffer
 (use-package minimap
   :straight t
-  :ensure t
+
   :delight
   :config
   (setq minimap-window-location 'right)
@@ -268,7 +255,7 @@
 ;; Cleanup whitespace automatically on save
 (use-package whitespace-cleanup-mode
   :straight t
-  :ensure t
+  :demand t
   :delight
   :config
   (global-whitespace-cleanup-mode t))
@@ -276,7 +263,7 @@
 ;; Undo tree instead of default ring
 (use-package undo-tree
   :straight t
-  :ensure t
+  :demand t
   :delight
   :hook
   (after-init . undo-tree-mode))
@@ -284,7 +271,7 @@
 ;; Show number of search matches
 (use-package anzu
   :straight t
-  :ensure t
+  :demand t
   :delight
   :hook
   (after-init . anzu-mode))
@@ -292,14 +279,12 @@
 ;; Use org mode
 (use-package org
   :straight t
-  :ensure t
   :config
   (setq org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE"))))
 
 ;; Another completion backend
 (use-package company
   :straight t
-  :ensure t
   :delight
   :init
   (setq company-idle-delay t
@@ -309,7 +294,6 @@
   (after-init . global-company-mode)
   (text-mode  . company-mode)
   (prog-mode  . company-mode)
-
   :config
   (setq company-backends
         '((company-files                 ; files & directory
@@ -325,7 +309,6 @@
 ;; Company quick help
 (use-package company-quickhelp
   :straight t
-  :ensure t
   :delight
   :config
   (company-quickhelp-mode))
@@ -333,7 +316,6 @@
 ;; Use the Language Server Protocol
 (use-package lsp-mode
   :straight t
-  :ensure t
   :delight
   :commands
   (lsp lsp-deferred)
@@ -354,7 +336,6 @@
 ;; Provides visual help in the buffer
 (use-package lsp-ui
   :straight t
-  :ensure t
   :defer t
   :config
   (setq lsp-ui-sideline-enable nil
@@ -366,19 +347,16 @@
 ;; Helm integration with lsp
 (use-package helm-lsp
   :straight t
-  :ensure t
   :config
   (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
 
 ;; lsp integration with treemacs
 (use-package lsp-treemacs
-  :straight t
-  :ensure t)
+  :straight t)
 
 ;; Integration with the debug server
 (use-package dap-mode
   :straight t
-  :ensure t
   :defer t
   :delight
   :after lsp-mode
@@ -388,7 +366,6 @@
 ;; Another completion backend
 (use-package racer
   :straight t
-  :ensure t
   :delight
   :init
   (setq company-tooltip-align-annotations t)
@@ -398,7 +375,6 @@
 ;; Rust programming language mode
 (use-package rustic
   :straight t
-  :ensure t
   :delight
   :init
   (setq rustic-lsp-server 'rust-analyzer)
@@ -421,7 +397,6 @@
 ;; Git porcelain
 (use-package magit
   :straight t
-  :ensure t
   :delight
   :bind
   (("C-x g"   . magit-status)
@@ -430,14 +405,12 @@
 ;; Git statistics
 (use-package magit-stats
   :straight t
-  :ensure t
   :bind
   ("C-x M-s" . magit-stats))
 
 ;; More git helpers
 (use-package git-messenger
   :straight t
-  :ensure t
   :delight
   :bind
   ("C-x G" . git-messenger:popup-message)
@@ -455,7 +428,6 @@
 ;; Python programming language mode
 (use-package elpy
   :straight t
-  :ensure t
   :delight
   :init
   (elpy-enable))
@@ -463,7 +435,6 @@
 ;; Auto format Python files using the uncompromising formatter
 (use-package blacken
   :straight t
-  :ensure t
   :delight
   :hook (python-mode . blacken-mode)
   :config
@@ -472,7 +443,6 @@
 ;; Language server for Python
 (use-package lsp-pyright
   :straight t
-  :ensure t
   :defer t
   :config
   (setq lsp-pyright-disable-language-service nil
@@ -484,7 +454,6 @@
 
 ;; Built-in Python utilities
 (use-package python
-  :ensure t
   :config
   ;; Remove guess indent python message
   (setq python-indent-guess-indent-offset-verbose nil)
@@ -504,18 +473,15 @@
 
 ;; Use pydoc
 (use-package pydoc
-  :straight t
-  :ensure t)
+  :straight t)
 
 ;; Helm navigation of pydoc
 (use-package helm-pydoc
-  :straight t
-  :ensure t)
+  :straight t)
 
 ;; Required to easily switch virtual envs
 (use-package pyvenv
   :straight t
-  :ensure t
   :config
   ;; Display virtual envs in the menu bar
   (setq pyvenv-menu t)
@@ -527,14 +493,12 @@
 ;; Python mode docstring handler
 (use-package python-docstring
   :straight t
-  :ensure t
   :delight
   :hook (python-mode . python-docstring-mode))
 
 ;; Haskell programming language mode
 (use-package haskell-mode
   :straight t
-  :ensure t
   :delight
   :init
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
@@ -543,7 +507,6 @@
 ;; Virtual terminal emulater
 (use-package vterm
   :straight t
-  :ensure t
   :delight
   :bind
   ([f1] . vterm))

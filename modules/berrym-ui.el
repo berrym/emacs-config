@@ -122,28 +122,26 @@ Has no effect if the character before point is not of the syntax class ')'."
 
 (use-package volatile-highlights
   :straight t
-  :ensure t
   :delight
   :hook
   (after-init . volatile-highlights-mode))
 
 (use-package vi-tilde-fringe
   :straight t
-  :ensure t
+  :demand t
   :delight
   :init
   (global-vi-tilde-fringe-mode))
 
 (use-package minimap
   :straight t
-  :ensure t
   :delight
   :bind
   ("<f6>" . minimap-mode))
 
 (use-package doom-modeline
   :straight t
-  :ensure t
+  :demand t
   :delight
   :config
   ;; If non-nil, cause imenu to see `doom-modeline' declarations.
@@ -401,6 +399,7 @@ Has no effect if the character before point is not of the syntax class ')'."
   (use-package doom-themes
     :straight t
     :ensure t
+    :demand t
     :config
     (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
           doom-themes-enable-italic t) ; if nil, italics is universally disabled

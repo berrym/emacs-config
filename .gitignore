@@ -4,3 +4,7 @@ elpa/
 elpy/
 save-files/
 straight/
+history
+projectile-bookmarks.eld
+recentf
+tramp
