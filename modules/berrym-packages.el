@@ -313,6 +313,16 @@
   :config
   (company-quickhelp-mode))
 
+;; Use eglot
+(use-package eglot
+  :straight t
+  :delight
+  :config
+  (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"
+                                        (python-mode) "pyright"))
+  (add-hook 'c-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook 'eglot-ensure))
+
 ;; Use the Language Server Protocol
 (use-package lsp-mode
   :straight t
