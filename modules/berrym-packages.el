@@ -107,6 +107,13 @@
   :straight t
   :demand t)
 
+;; Use clang-format
+(use-package clang-format
+  :straight t
+  :demand t
+  :config
+  (setq clang-format-style "file"))
+
 ;; Use auto-complete
 (use-package auto-complete
   :straight t

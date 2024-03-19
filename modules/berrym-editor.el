@@ -69,9 +69,10 @@
 (add-hook 'c-mode-common-hook (lambda () (c-toggle-comment-style -1))) ; use c++ style comments
 (add-hook 'c-mode-common-hook 'lsp)
 
-;; tabs are 4 spaces
-(setq-default tab-width 4
-              indent-tabs-mode nil)
+;; tabs are 4 spaces and tab indents
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
 
 (message "berrym-editor: module loaded successfully.")
 
