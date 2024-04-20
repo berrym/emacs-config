@@ -71,6 +71,9 @@ Has no effect if the character before point is not of the syntax class ')'."
         tab-bar-format '(tab-bar-format-menu-bar tab-bar-format-tabs tab-bar-separator
                                                  tab-bar-format-align-right
                                                  tab-bar-format-global))
+  ; use emacs 29 new pixel based scrolling
+  (setq pixel-scroll-precision-mode t)
+  (setq pixel-scroll-precision-use-momentum t)
   :custom
   (cursor-type 'bar)
   (visible-bell t)
