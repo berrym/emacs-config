@@ -321,73 +321,49 @@
   (company-quickhelp-mode))
 
 ;; Use eglot
-(use-package eglot
-  :straight t
-  :delight
-  :config
-  (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"
-                                        (python-mode) "pyright"))
-  (add-hook 'c-mode-hook 'eglot-ensure)
-  (add-hook 'c++-mode-hook 'eglot-ensure))
+;; (use-package eglot
+;;   :straight t
+;;   :delight
+;;   :config
+;;   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"
+;;                                         (python-mode) "pyright"))
+;;   (add-hook 'c-mode-hook 'eglot-ensure)
+;;   (add-hook 'c++-mode-hook 'eglot-ensure))
 
 ;; Use the Language Server Protocol
 (use-package lsp-mode
   :straight t
-  :delight
-  :commands
-  (lsp lsp-deferred)
   :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
-  :hook
-  ((before-save . lsp-organize-imports)
-   (python-mode . lsp-deferred))
-  :bind
-  (("C-c d"   . lsp-describe-thing-at-point)
-   ("C-c e n" . flymake-goto-next-error)
-   ("C-c e p" . flymake-goto-prev-error)
-   ("C-c e r" . lsp-find-references)
-   ("C-c e R" . lsp-rename)
-   ("C-c e i" . lsp-find-implementation)
-   ("C-c e t" . lsp-find-type-definition)))
+  :config
+  (setq lsp-pyright-langserver-command "basedpyright")
+  :hook ((before-save . lsp-organize-imports)
+         (c-mode . lsp-deferred)
+         (c++-mode . lsp-deferred)
+         (go-mode . lsp-deferred)
+         (haskell-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
 
-;; Provides visual help in the buffer
 (use-package lsp-ui
   :straight t
-  :defer t
-  :config
-  (setq lsp-ui-sideline-enable nil
-        lsp-ui-doc-delay 2)
-  :hook (lsp-mode . lsp-ui-mode)
-  :bind (:map lsp-ui-mode-map
-          ("C-c i" . lsp-ui-imenu)))
+  :commands lsp-ui-mode)
 
-;; Helm integration with lsp
 (use-package helm-lsp
   :straight t
-  :config
-  (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
+  :commands helm-lsp-workspace-symbol)
 
-;; lsp integration with treemacs
 (use-package lsp-treemacs
-  :straight t)
-
-;; Integration with the debug server
-(use-package dap-mode
   :straight t
-  :defer t
-  :delight
-  :after lsp-mode
-  :config
-  (dap-auto-configure-mode))
+  :commands lsp-treemacs-errors-list)
 
-;; Another completion backend
-(use-package racer
-  :straight t
-  :delight
-  :init
-  (setq company-tooltip-align-annotations t)
-  :hook
-  (racer-mode-hook . company-mode))
+(use-package dap-mode :straight t)
+(use-package dap-PYTHON)
+(use-package dap-GO)
+
+;; GOLANG
+(use-package go-mode :straight t)
 
 ;; Rust programming language mode
 (use-package rustic
@@ -460,12 +436,17 @@
 ;; Language server for Python
 (use-package lsp-pyright
   :straight t
-  :defer t
+  :ensure t
+  :custom (lsp-pyright-langserver-command "basedpyright") ;; or pyright
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp-deferred)))  ; or lsp
   :config
   (setq lsp-pyright-disable-language-service nil
     lsp-pyright-disable-organize-imports nil
     lsp-pyright-auto-import-completions t
-    lsp-pyright-use-library-code-for-types t)
+    lsp-pyright-use-library-code-for-types t
+    lsp-pyright-type-checking-mode "standard")
   :hook ((python-mode . (lambda ()
                           (require 'lsp-pyright) (lsp-deferred)))))
 
