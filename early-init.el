@@ -12,6 +12,7 @@
 
 ;;; Code:
 
+(setq warning-minimum-log-level 'error)
 (setq package-enable-at-startup nil)
 (setq package-quickstart nil)
 
